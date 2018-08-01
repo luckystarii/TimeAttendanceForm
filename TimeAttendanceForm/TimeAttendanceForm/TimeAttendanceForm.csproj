@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TimeAttendanceForm.cs">
+    <Compile Include="TimeAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TimeAttendanceForm.Designer.cs">
-      <DependentUpon>TimeAttendanceForm.cs</DependentUpon>
+    <Compile Include="TimeAttendance.Designer.cs">
+      <DependentUpon>TimeAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TimeAttendanceForm.resx">
-      <DependentUpon>TimeAttendanceForm.cs</DependentUpon>
+    <EmbeddedResource Include="TimeAttendance.resx">
+      <DependentUpon>TimeAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
