@@ -18,7 +18,7 @@ namespace Test_2
         public Form1()
         {
             InitializeComponent();
-            //this.openFileDialog1 = new OpenFileDialog();
+            openFileDialog1 = new OpenFileDialog();
         }
 
         private void Switch_Groupbox(bool data,bool cell)
@@ -46,7 +46,7 @@ namespace Test_2
             openFileDialog1.FilterIndex = 3;
 
             openFileDialog1.Multiselect = false;        //not allow multiline selection at the file selection level
-            openFileDialog1.Title = "Open Text File-R13";   //define the name of openfileDialog
+            openFileDialog1.Title = "Select file to import";   //define the name of openfileDialog
             openFileDialog1.InitialDirectory = @"Desktop"; //define the initial directory
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
@@ -65,8 +65,8 @@ namespace Test_2
 
         private void btn_Preview_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(this.openFileDialog1.FileName);
-            if (!string.IsNullOrWhiteSpace(this.openFileDialog1.FileName))
+            Console.WriteLine(openFileDialog1.FileName);
+            if (!string.IsNullOrWhiteSpace(openFileDialog1.FileName))
             {
                 string pathName = this.openFileDialog1.FileName;
                 string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
@@ -75,7 +75,13 @@ namespace Test_2
                 string sheetName = "";
                 if (checkSameRow())
                 {
-                    //tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 5, 2, 5, 7);
+                    tbContainer = LoadExcelFile_specific_colunm(pathName
+                                                            , sheetName
+                                                            , (getIntFromAddr(tb_Date .Text)-1)
+                                                            , getIntFromAddr(tb_Date.Text)
+                                                            , GetColumnNumber(getStringFromAddr(tb_Date.Text))
+                                                            , GetColumnNumber(getStringFromAddr(tb_Time_In.Text))
+                                                            , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)));
                     Dgv_Show_Preview.DataSource = tbContainer;
                 }
                 else
@@ -92,7 +98,8 @@ namespace Test_2
         public bool checkSameRow()
         {
             Console.WriteLine(getIntFromAddr(tb_Date.Text));
-            if (getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_In.Text))
+            if (getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_In.Text)
+                && getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_Out.Text))
             {
                 return true;
             }
@@ -108,12 +115,39 @@ namespace Test_2
 
             return match.Groups["Alpha"].Value;
         }
-        public string getIntFromAddr(string str)
+        public int getIntFromAddr(string str)
         {
             var numAlpha = new Regex("(?<Alpha>[a-zA-Z]*)(?<Numeric>[0-9]*)");
             var match = numAlpha.Match(str);
 
-            return match.Groups["Numeric"].Value;
+            return Int32.Parse(match.Groups["Numeric"].Value);
+        }
+        public static int GetColumnNumber(string name)
+        {
+            int number = 0;
+            int pow = 1;
+            for (int i = name.Length - 1; i >= 0; i--)
+            {
+                number += (name.ToUpper()[i] - 'A' + 1) * pow;
+                pow *= 26;
+            }
+
+            return number;
+        }
+        public string GetExcelColumnName(int columnNumber)
+        {
+            int dividend = columnNumber;
+            string columnName = String.Empty;
+            int modulo;
+
+            while (dividend > 0)
+            {
+                modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                dividend = (int)((dividend - modulo) / 26);
+            }
+
+            return columnName;
         }
         public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut)
         {

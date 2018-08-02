@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_Project_Detail = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.gb_Cell = new System.Windows.Forms.GroupBox();
             this.tb_Groupbox_Cell_Project = new System.Windows.Forms.TextBox();
             this.tb_Groupbox_Cell_Site_Stop = new System.Windows.Forms.TextBox();
@@ -52,23 +53,22 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.Panel_Groupbox_Data = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Cell = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.tb_Emp_No = new System.Windows.Forms.TextBox();
             this.tb_Date = new System.Windows.Forms.TextBox();
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.tb_Time_In = new System.Windows.Forms.TextBox();
-            this.tb_time_Out = new System.Windows.Forms.TextBox();
+            this.tb_Time_Out = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.Dgv_Show_Preview = new System.Windows.Forms.DataGridView();
             this.btn_Export = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.Panel_Groupbox_Data = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Cell = new System.Windows.Forms.Panel();
             this.btn_Preview = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.panel_Cell_Mapping = new System.Windows.Forms.Panel();
@@ -211,6 +211,18 @@
             this.panel_Project_Detail.Size = new System.Drawing.Size(484, 414);
             this.panel_Project_Detail.TabIndex = 1;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.LightGray;
+            this.label10.Location = new System.Drawing.Point(12, -16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(465, 19);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "_________________________________________________________";
+            // 
             // gb_Cell
             // 
             this.gb_Cell.Controls.Add(this.tb_Groupbox_Cell_Project);
@@ -326,6 +338,22 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Site Start";
             // 
+            // Panel_Groupbox_Data
+            // 
+            this.Panel_Groupbox_Data.Location = new System.Drawing.Point(88, 30);
+            this.Panel_Groupbox_Data.Name = "Panel_Groupbox_Data";
+            this.Panel_Groupbox_Data.Size = new System.Drawing.Size(298, 130);
+            this.Panel_Groupbox_Data.TabIndex = 31;
+            this.Panel_Groupbox_Data.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_MouseClick);
+            // 
+            // Panel_Groupbox_Cell
+            // 
+            this.Panel_Groupbox_Cell.Location = new System.Drawing.Point(389, 30);
+            this.Panel_Groupbox_Cell.Name = "Panel_Groupbox_Cell";
+            this.Panel_Groupbox_Cell.Size = new System.Drawing.Size(75, 130);
+            this.Panel_Groupbox_Cell.TabIndex = 32;
+            this.Panel_Groupbox_Cell.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_MouseClick);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -368,13 +396,13 @@
             this.tb_Time_In.Size = new System.Drawing.Size(48, 26);
             this.tb_Time_In.TabIndex = 3;
             // 
-            // tb_time_Out
+            // tb_Time_Out
             // 
-            this.tb_time_Out.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_time_Out.Location = new System.Drawing.Point(87, 178);
-            this.tb_time_Out.Name = "tb_time_Out";
-            this.tb_time_Out.Size = new System.Drawing.Size(48, 26);
-            this.tb_time_Out.TabIndex = 4;
+            this.tb_Time_Out.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_Time_Out.Location = new System.Drawing.Point(87, 178);
+            this.tb_Time_Out.Name = "tb_Time_Out";
+            this.tb_Time_Out.Size = new System.Drawing.Size(48, 26);
+            this.tb_Time_Out.TabIndex = 4;
             // 
             // label11
             // 
@@ -426,18 +454,6 @@
             this.label15.TabIndex = 28;
             this.label15.Text = "Time Out";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.LightGray;
-            this.label10.Location = new System.Drawing.Point(12, -16);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(465, 19);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "_________________________________________________________";
-            // 
             // Dgv_Show_Preview
             // 
             this.Dgv_Show_Preview.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -467,22 +483,6 @@
             this.btn_Cancel.TabIndex = 8;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
-            // 
-            // Panel_Groupbox_Data
-            // 
-            this.Panel_Groupbox_Data.Location = new System.Drawing.Point(88, 30);
-            this.Panel_Groupbox_Data.Name = "Panel_Groupbox_Data";
-            this.Panel_Groupbox_Data.Size = new System.Drawing.Size(298, 130);
-            this.Panel_Groupbox_Data.TabIndex = 31;
-            this.Panel_Groupbox_Data.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_MouseClick);
-            // 
-            // Panel_Groupbox_Cell
-            // 
-            this.Panel_Groupbox_Cell.Location = new System.Drawing.Point(389, 30);
-            this.Panel_Groupbox_Cell.Name = "Panel_Groupbox_Cell";
-            this.Panel_Groupbox_Cell.Size = new System.Drawing.Size(75, 130);
-            this.Panel_Groupbox_Cell.TabIndex = 32;
-            this.Panel_Groupbox_Cell.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_MouseClick);
             // 
             // btn_Preview
             // 
@@ -517,7 +517,7 @@
             this.panel_Cell_Mapping.Controls.Add(this.btn_Export);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Emp_No);
             this.panel_Cell_Mapping.Controls.Add(this.Dgv_Show_Preview);
-            this.panel_Cell_Mapping.Controls.Add(this.tb_time_Out);
+            this.panel_Cell_Mapping.Controls.Add(this.tb_Time_Out);
             this.panel_Cell_Mapping.Controls.Add(this.label15);
             this.panel_Cell_Mapping.Controls.Add(this.label16);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Time_In);
@@ -592,7 +592,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tb_Time_In;
-        private System.Windows.Forms.TextBox tb_time_Out;
+        private System.Windows.Forms.TextBox tb_Time_Out;
         private System.Windows.Forms.TextBox tb_Emp_No;
         private System.Windows.Forms.TextBox tb_Date;
         private System.Windows.Forms.Label label9;
