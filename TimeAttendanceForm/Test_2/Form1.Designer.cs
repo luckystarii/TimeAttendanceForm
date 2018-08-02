@@ -72,6 +72,7 @@
             this.btn_Preview = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.panel_Cell_Mapping = new System.Windows.Forms.Panel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel_Import_Export.SuspendLayout();
             this.panel_Project_Detail.SuspendLayout();
             this.gb_Cell.SuspendLayout();
@@ -127,6 +128,7 @@
             this.btn_Browse_Target_file.TabIndex = 1;
             this.btn_Browse_Target_file.Text = "...";
             this.btn_Browse_Target_file.UseVisualStyleBackColor = true;
+            this.btn_Browse_Target_file.Click += new System.EventHandler(this.btn_Browse_Target_file_Click);
             // 
             // tb_Template_file
             // 
@@ -491,6 +493,7 @@
             this.btn_Preview.TabIndex = 6;
             this.btn_Preview.Text = "Preview";
             this.btn_Preview.UseVisualStyleBackColor = true;
+            this.btn_Preview.Click += new System.EventHandler(this.btn_Preview_Click);
             // 
             // label16
             // 
@@ -527,6 +530,10 @@
             this.panel_Cell_Mapping.Name = "panel_Cell_Mapping";
             this.panel_Cell_Mapping.Size = new System.Drawing.Size(484, 248);
             this.panel_Cell_Mapping.TabIndex = 2;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -599,6 +606,7 @@
         private System.Windows.Forms.Button btn_Preview;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel_Cell_Mapping;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
