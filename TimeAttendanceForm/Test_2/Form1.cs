@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -17,7 +18,7 @@ namespace Test_2
         public Form1()
         {
             InitializeComponent();
-            
+            //this.openFileDialog1 = new OpenFileDialog();
         }
 
         private void Switch_Groupbox(bool data,bool cell)
@@ -40,42 +41,80 @@ namespace Test_2
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
         {
+            
+            openFileDialog1.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
+            openFileDialog1.FilterIndex = 3;
 
-            this.openFileDialog1 = new OpenFileDialog();  //create openfileDialog Object
-            this.openFileDialog1.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
-            this.openFileDialog1.FilterIndex = 3;
-
-            this.openFileDialog1.Multiselect = false;        //not allow multiline selection at the file selection level
-            this.openFileDialog1.Title = "Open Text File-R13";   //define the name of openfileDialog
-            this.openFileDialog1.InitialDirectory = @"Desktop"; //define the initial directory
-            DialogResult result = this.openFileDialog1.ShowDialog(); // Show the dialog.
+            openFileDialog1.Multiselect = false;        //not allow multiline selection at the file selection level
+            openFileDialog1.Title = "Open Text File-R13";   //define the name of openfileDialog
+            openFileDialog1.InitialDirectory = @"Desktop"; //define the initial directory
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                string Pathfile = this.openFileDialog1.FileName;
+                string Pathfile = openFileDialog1.FileName;
                 try
                 {
-                    string text = File.ReadAllText(Pathfile);
                     tb_Target_file.Text = @"...\" + Path.GetFileName(Pathfile);
-                    
                 }
-                catch (IOException)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.StackTrace);
                 }
             }
         }
 
         private void btn_Preview_Click(object sender, EventArgs e)
         {
-            string pathName = this.openFileDialog1.FileName;
-            string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
-            DataTable tbContainer = new DataTable();
-            string strConn = string.Empty;
-            string sheetName = "";
-            
-            tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 5, 2, 5, 7);
-            Dgv_Show_Preview.DataSource = tbContainer;
+            Console.WriteLine(this.openFileDialog1.FileName);
+            if (!string.IsNullOrWhiteSpace(this.openFileDialog1.FileName))
+            {
+                string pathName = this.openFileDialog1.FileName;
+                string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
+                DataTable tbContainer = new DataTable();
+                string strConn = string.Empty;
+                string sheetName = "";
+                if (checkSameRow())
+                {
+                    //tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 5, 2, 5, 7);
+                    Dgv_Show_Preview.DataSource = tbContainer;
+                }
+                else
+                {
+                    MessageBox.Show("Error! Check row Date, Time in, Time out");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error! Please select file to import.");
+            }
+               
         }
+        public bool checkSameRow()
+        {
+            Console.WriteLine(getIntFromAddr(tb_Date.Text));
+            if (getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_In.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string getStringFromAddr(string str)
+        {
+            var numAlpha = new Regex("(?<Alpha>[a-zA-Z]*)(?<Numeric>[0-9]*)");
+            var match = numAlpha.Match(str);
 
+            return match.Groups["Alpha"].Value;
+        }
+        public string getIntFromAddr(string str)
+        {
+            var numAlpha = new Regex("(?<Alpha>[a-zA-Z]*)(?<Numeric>[0-9]*)");
+            var match = numAlpha.Match(str);
+
+            return match.Groups["Numeric"].Value;
+        }
         public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut)
         {
 
