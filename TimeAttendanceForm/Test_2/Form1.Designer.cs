@@ -73,6 +73,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.panel_Cell_Mapping = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.panel_Import_Export.SuspendLayout();
             this.panel_Project_Detail.SuspendLayout();
             this.gb_Cell.SuspendLayout();
@@ -108,6 +110,7 @@
             this.btn_Browse_Template_file.TabIndex = 5;
             this.btn_Browse_Template_file.Text = "...";
             this.btn_Browse_Template_file.UseVisualStyleBackColor = true;
+            this.btn_Browse_Template_file.Click += new System.EventHandler(this.btn_Browse_Template_file_Click);
             // 
             // btn_Browse_Dest_file
             // 
@@ -118,6 +121,7 @@
             this.btn_Browse_Dest_file.TabIndex = 3;
             this.btn_Browse_Dest_file.Text = "...";
             this.btn_Browse_Dest_file.UseVisualStyleBackColor = true;
+            this.btn_Browse_Dest_file.Click += new System.EventHandler(this.btn_Browse_Dest_file_Click);
             // 
             // btn_Browse_Target_file
             // 
@@ -132,27 +136,36 @@
             // 
             // tb_Template_file
             // 
+            this.tb_Template_file.BackColor = System.Drawing.SystemColors.Window;
             this.tb_Template_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_Template_file.Location = new System.Drawing.Point(94, 111);
             this.tb_Template_file.Name = "tb_Template_file";
+            this.tb_Template_file.ReadOnly = true;
             this.tb_Template_file.Size = new System.Drawing.Size(340, 26);
             this.tb_Template_file.TabIndex = 4;
+            this.tb_Template_file.Click += new System.EventHandler(this.btn_Browse_Template_file_Click);
             // 
             // tb_Dest_file
             // 
+            this.tb_Dest_file.BackColor = System.Drawing.SystemColors.Window;
             this.tb_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_Dest_file.Location = new System.Drawing.Point(94, 75);
             this.tb_Dest_file.Name = "tb_Dest_file";
+            this.tb_Dest_file.ReadOnly = true;
             this.tb_Dest_file.Size = new System.Drawing.Size(340, 26);
             this.tb_Dest_file.TabIndex = 2;
+            this.tb_Dest_file.Click += new System.EventHandler(this.btn_Browse_Dest_file_Click);
             // 
             // tb_Target_file
             // 
+            this.tb_Target_file.BackColor = System.Drawing.SystemColors.Window;
             this.tb_Target_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_Target_file.Location = new System.Drawing.Point(94, 38);
             this.tb_Target_file.Name = "tb_Target_file";
+            this.tb_Target_file.ReadOnly = true;
             this.tb_Target_file.Size = new System.Drawing.Size(340, 26);
             this.tb_Target_file.TabIndex = 0;
+            this.tb_Target_file.Click += new System.EventHandler(this.btn_Browse_Target_file_Click);
             // 
             // label5
             // 
@@ -456,10 +469,16 @@
             // 
             // Dgv_Show_Preview
             // 
+            this.Dgv_Show_Preview.AllowUserToAddRows = false;
+            this.Dgv_Show_Preview.AllowUserToDeleteRows = false;
+            this.Dgv_Show_Preview.AllowUserToResizeColumns = false;
+            this.Dgv_Show_Preview.AllowUserToResizeRows = false;
             this.Dgv_Show_Preview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Dgv_Show_Preview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Show_Preview.Location = new System.Drawing.Point(149, 8);
             this.Dgv_Show_Preview.Name = "Dgv_Show_Preview";
+            this.Dgv_Show_Preview.ReadOnly = true;
+            this.Dgv_Show_Preview.RowHeadersVisible = false;
             this.Dgv_Show_Preview.Size = new System.Drawing.Size(322, 195);
             this.Dgv_Show_Preview.TabIndex = 5;
             this.Dgv_Show_Preview.TabStop = false;
@@ -473,6 +492,7 @@
             this.btn_Export.TabIndex = 7;
             this.btn_Export.Text = "Export";
             this.btn_Export.UseVisualStyleBackColor = true;
+            this.btn_Export.Click += new System.EventHandler(this.btn_Export_Click);
             // 
             // btn_Cancel
             // 
@@ -535,6 +555,10 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,6 +567,7 @@
             this.Controls.Add(this.panel_Cell_Mapping);
             this.Controls.Add(this.panel_Project_Detail);
             this.Controls.Add(this.panel_Import_Export);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "C.S.I. Group - Time Attendance";
             this.panel_Import_Export.ResumeLayout(false);
@@ -607,6 +632,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel_Cell_Mapping;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 

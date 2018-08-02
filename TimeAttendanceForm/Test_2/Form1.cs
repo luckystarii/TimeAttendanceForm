@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Test_2
 {
@@ -65,39 +66,44 @@ namespace Test_2
 
         private void btn_Preview_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(openFileDialog1.FileName);
-            if (!string.IsNullOrWhiteSpace(openFileDialog1.FileName))
+            try
             {
-                string pathName = this.openFileDialog1.FileName;
-                string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
-                DataTable tbContainer = new DataTable();
-                string strConn = string.Empty;
-                string sheetName = "";
-                if (checkSameRow())
+                if (!string.IsNullOrWhiteSpace(openFileDialog1.FileName))
                 {
-                    tbContainer = LoadExcelFile_specific_colunm(pathName
-                                                            , sheetName
-                                                            , (getIntFromAddr(tb_Date .Text)-1)
-                                                            , getIntFromAddr(tb_Date.Text)
-                                                            , GetColumnNumber(getStringFromAddr(tb_Date.Text))
-                                                            , GetColumnNumber(getStringFromAddr(tb_Time_In.Text))
-                                                            , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)));
-                    Dgv_Show_Preview.DataSource = tbContainer;
+                    string pathName = this.openFileDialog1.FileName;
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
+                    DataTable tbContainer = new DataTable();
+                    string strConn = string.Empty;
+                    string sheetName = "";
+                    if (checkSameRow())
+                    {
+                        tbContainer = LoadExcelFile_specific_colunm(pathName
+                                                                , sheetName
+                                                                , (getIntFromAddr(tb_Date.Text) - 1)
+                                                                , getIntFromAddr(tb_Date.Text)
+                                                                , GetColumnNumber(getStringFromAddr(tb_Date.Text))
+                                                                , GetColumnNumber(getStringFromAddr(tb_Time_In.Text))
+                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)));
+                        Dgv_Show_Preview.DataSource = tbContainer;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error! Check row Date, Time in, Time out");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error! Check row Date, Time in, Time out");
+                    MessageBox.Show("Error! Please select file to import.");
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Error! Please select file to import.");
+                MessageBox.Show("Please check inputbox.");
             }
                
         }
         public bool checkSameRow()
         {
-            Console.WriteLine(getIntFromAddr(tb_Date.Text));
             if (getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_In.Text)
                 && getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_Out.Text))
             {
@@ -184,101 +190,52 @@ namespace Test_2
             //----------------------------- end date in month--------------------------------------
 
             ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
-            for (int i = 0; i < ExcelWorksheet.UsedRange.Columns.Count; i++)
-            {
-                string ColumnHeading = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[headerRowNumber, i + 1]).Value2);
 
-                if (!String.IsNullOrWhiteSpace(ColumnHeading) && !dt.Columns.Contains(ColumnHeading))
-                {
-
-                    if (Columns.ContainsKey(ColumnHeading))
-                    {
-                        Columns.Add(ColumnHeading + "2", i + 1);
-                    }
-                    else
-                    {
-                        Columns.Add(ColumnHeading, i + 1);
-                    }
-
-                    if (i + 1 == colDateTime || i + 1 == colTimeIn || i + 1 == colTimeOut)
-                    {
-                        dt.Columns.Add(ColumnHeading);
-                    }
-
-                }
-
-
-            }
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Time IN");
+            dt.Columns.Add("Time Out");
+                   
             for (int i = 0; i < dayMonth; i++)
             {
                 try
                 {
-
-                    int ColumnCount = 0;
+                 
 
                     DataRow Row = dt.NewRow();
 
                     bool RowHasContent = false;
 
-                    foreach (KeyValuePair<string, int> kvp in Columns)
+                   
+                    try
                     {
-                        //string data = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
-                        string CellContent = null;
+                        string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
 
-                        if (kvp.Value == colDateTime)
-                        {
-                            try
-                            {
-                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+                        double date = double.Parse(sDate);
 
-                                double date = double.Parse(sDate);
+                        Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                    
+                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTimeIn]).Value2);
 
-                                CellContent = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
-                            }
-                            catch
-                            {
-                                CellContent = "";
-                            }
-                            Row[ColumnCount] = CellContent;
-                            ColumnCount++;
+                        date = double.Parse(sDate);
 
-                        }
-                        else if (kvp.Value == colTimeIn || kvp.Value == colTimeOut)
-                        {
-                            try
-                            {
-                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+                        Row[1] = DateTime.FromOADate(date).ToString("HH:mm");
+                    
+                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTimeOut]).Value2);
 
-                                double date = double.Parse(sDate);
+                        date = double.Parse(sDate);
 
-                                CellContent = DateTime.FromOADate(date).ToString("HH:mm");
-                            }
-                            catch
-                            {
-                                CellContent = " ";
-                            }
-                            Row[ColumnCount] = CellContent;
-                            ColumnCount++;
-                        }
-
-
-
-
-
-                        if (!string.IsNullOrWhiteSpace(CellContent))
-                        {
-                            RowHasContent = true;
-
-                        }
-
+                        Row[2] = DateTime.FromOADate(date).ToString("HH:mm");
                     }
-                    Console.Write(Row[0].ToString());
-                    if (RowHasContent)
+                    catch
+                    {
+                        //MessageBox.Show("Error! please check column.");
+                    }
+                    
+                    if (!string.IsNullOrWhiteSpace(Row[0].ToString()) )
                     {
                         dt.Rows.Add(Row); ;
-
                     }
-                    Console.WriteLine(i);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -298,6 +255,59 @@ namespace Test_2
 
             try { ExcelApplication = null; } catch { }
             return dt;
+        }
+
+        private void btn_Browse_Dest_file_Click(object sender, EventArgs e)
+        {
+            var Selected_folder = new CommonOpenFileDialog();
+            Selected_folder.IsFolderPicker = true;
+            CommonFileDialogResult result = Selected_folder.ShowDialog();
+            if (result == CommonFileDialogResult.Ok)
+            {
+                tb_Dest_file.Text = Selected_folder.FileName;
+            }
+        }
+
+        private void Export_Excell()
+        {
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workBook = excelApp.Workbooks.Open(openFileDialog2.FileName);
+            string WorksheetName = workBook.ActiveSheet.Name;
+            Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[WorksheetName];
+
+
+            workBook.SaveAs(tb_Dest_file.Text+"\\sos.xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
+            workBook.Close();
+            excelApp.Quit();
+            Console.WriteLine(tb_Dest_file.Text + "sos.xls");
+        }
+
+        private void btn_Export_Click(object sender, EventArgs e)
+        {
+            Export_Excell();
+        }
+
+        private void btn_Browse_Template_file_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
+            openFileDialog2.FilterIndex = 3;
+
+            openFileDialog2.Multiselect = false;        //not allow multiline selection at the file selection level
+            openFileDialog2.Title = "Select file to import";   //define the name of openfileDialog
+            openFileDialog2.InitialDirectory = @"Desktop"; //define the initial directory
+            DialogResult result = openFileDialog2.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                string Pathfile = openFileDialog2.FileName;
+                try
+                {
+                    tb_Template_file.Text = @"...\" + Path.GetFileName(Pathfile);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
         }
     }// end form1
 }

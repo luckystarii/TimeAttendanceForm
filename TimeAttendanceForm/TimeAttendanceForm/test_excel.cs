@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.OleDb;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace TimeAttendanceForm
 {
@@ -179,9 +180,9 @@ namespace TimeAttendanceForm
             return dt;
         }
 
-        public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber,int colDateTime,int colTimeIn,int colTimeOut)
+        public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut)
         {
-            
+
             DataTable dt = new DataTable();
 
             Microsoft.Office.Interop.Excel.Application ExcelApplication = new Microsoft.Office.Interop.Excel.Application();
@@ -191,7 +192,7 @@ namespace TimeAttendanceForm
             Microsoft.Office.Interop.Excel.Worksheet ExcelWorksheet = null;
 
             string WorksheetName = worksheetName;
-            
+
             if (string.IsNullOrWhiteSpace(worksheetName))
             {
                 WorksheetName = ExcelWorkbook.ActiveSheet.Name;
@@ -230,16 +231,16 @@ namespace TimeAttendanceForm
                         Columns.Add(ColumnHeading, i + 1);
                     }
 
-                    if (i+1 == colDateTime || i + 1 == colTimeIn || i + 1 == colTimeOut)
+                    if (i + 1 == colDateTime || i + 1 == colTimeIn || i + 1 == colTimeOut)
                     {
                         dt.Columns.Add(ColumnHeading);
                     }
 
                 }
-               
+
 
             }
-              for (int i = 0; i < dayMonth; i++)
+            for (int i = 0; i < dayMonth; i++)
             {
                 try
                 {
@@ -290,19 +291,18 @@ namespace TimeAttendanceForm
                             Row[ColumnCount] = CellContent;
                             ColumnCount++;
                         }
-                        
-                        
 
-                       
 
-                        if (!string.IsNullOrWhiteSpace(CellContent) )
+
+
+
+                        if (!string.IsNullOrWhiteSpace(CellContent))
                         {
                             RowHasContent = true;
 
                         }
 
                     }
-                    DateTime checkDate;
                     Console.Write(Row[0].ToString());
                     if (RowHasContent)
                     {
@@ -311,7 +311,7 @@ namespace TimeAttendanceForm
                     }
                     Console.WriteLine(i);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.StackTrace);
 
