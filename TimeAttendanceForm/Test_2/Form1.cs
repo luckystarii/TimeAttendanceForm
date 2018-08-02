@@ -13,9 +13,11 @@ namespace Test_2
 {
     public partial class Form1 : Form
     {
+        //public OpenFileDialog openFileDialog1;
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void Switch_Groupbox(bool data,bool cell)
@@ -38,10 +40,18 @@ namespace Test_2
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+
+            this.openFileDialog1 = new OpenFileDialog();  //create openfileDialog Object
+            this.openFileDialog1.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
+            this.openFileDialog1.FilterIndex = 3;
+
+            this.openFileDialog1.Multiselect = false;        //not allow multiline selection at the file selection level
+            this.openFileDialog1.Title = "Open Text File-R13";   //define the name of openfileDialog
+            this.openFileDialog1.InitialDirectory = @"Desktop"; //define the initial directory
+            DialogResult result = this.openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                string Pathfile = openFileDialog1.FileName;
+                string Pathfile = this.openFileDialog1.FileName;
                 try
                 {
                     string text = File.ReadAllText(Pathfile);
@@ -56,7 +66,165 @@ namespace Test_2
 
         private void btn_Preview_Click(object sender, EventArgs e)
         {
-
+            string pathName = this.openFileDialog1.FileName;
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(this.openFileDialog1.FileName);
+            DataTable tbContainer = new DataTable();
+            string strConn = string.Empty;
+            string sheetName = "";
+            
+            tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 5, 2, 5, 7);
+            Dgv_Show_Preview.DataSource = tbContainer;
         }
-    }
+
+        public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut)
+        {
+
+            DataTable dt = new DataTable();
+
+            Microsoft.Office.Interop.Excel.Application ExcelApplication = new Microsoft.Office.Interop.Excel.Application();
+
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkbook = ExcelApplication.Workbooks.Open(fileName, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorksheet = null;
+
+            string WorksheetName = worksheetName;
+
+            if (string.IsNullOrWhiteSpace(worksheetName))
+            {
+                WorksheetName = ExcelWorkbook.ActiveSheet.Name;
+
+            }
+
+            ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
+
+            dt.TableName = WorksheetName;
+
+            Dictionary<string, int> Columns = new Dictionary<string, int>();
+            //----------------------------- get date in month--------------------------------------
+            string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
+            //Console.WriteLine(eeDate);
+            double edate = double.Parse(eeDate);
+            DateTime datetime = DateTime.FromOADate(edate);
+
+            int dayMonth = System.DateTime.DaysInMonth(datetime.Year, datetime.Month);
+
+            //----------------------------- end date in month--------------------------------------
+
+            ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
+            for (int i = 0; i < ExcelWorksheet.UsedRange.Columns.Count; i++)
+            {
+                string ColumnHeading = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[headerRowNumber, i + 1]).Value2);
+
+                if (!String.IsNullOrWhiteSpace(ColumnHeading) && !dt.Columns.Contains(ColumnHeading))
+                {
+
+                    if (Columns.ContainsKey(ColumnHeading))
+                    {
+                        Columns.Add(ColumnHeading + "2", i + 1);
+                    }
+                    else
+                    {
+                        Columns.Add(ColumnHeading, i + 1);
+                    }
+
+                    if (i + 1 == colDateTime || i + 1 == colTimeIn || i + 1 == colTimeOut)
+                    {
+                        dt.Columns.Add(ColumnHeading);
+                    }
+
+                }
+
+
+            }
+            for (int i = 0; i < dayMonth; i++)
+            {
+                try
+                {
+
+                    int ColumnCount = 0;
+
+                    DataRow Row = dt.NewRow();
+
+                    bool RowHasContent = false;
+
+                    foreach (KeyValuePair<string, int> kvp in Columns)
+                    {
+                        //string data = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+                        string CellContent = null;
+
+                        if (kvp.Value == colDateTime)
+                        {
+                            try
+                            {
+                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+
+                                double date = double.Parse(sDate);
+
+                                CellContent = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                            }
+                            catch
+                            {
+                                CellContent = "";
+                            }
+                            Row[ColumnCount] = CellContent;
+                            ColumnCount++;
+
+                        }
+                        else if (kvp.Value == colTimeIn || kvp.Value == colTimeOut)
+                        {
+                            try
+                            {
+                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+
+                                double date = double.Parse(sDate);
+
+                                CellContent = DateTime.FromOADate(date).ToString("HH:mm");
+                            }
+                            catch
+                            {
+                                CellContent = " ";
+                            }
+                            Row[ColumnCount] = CellContent;
+                            ColumnCount++;
+                        }
+
+
+
+
+
+                        if (!string.IsNullOrWhiteSpace(CellContent))
+                        {
+                            RowHasContent = true;
+
+                        }
+
+                    }
+                    Console.Write(Row[0].ToString());
+                    if (RowHasContent)
+                    {
+                        dt.Rows.Add(Row); ;
+
+                    }
+                    Console.WriteLine(i);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+
+                }
+
+            }
+
+            // Clean up
+
+            try { ExcelWorksheet = null; } catch { }
+
+            try { ExcelWorkbook.Close(); } catch { }
+
+            try { ExcelWorkbook = null; } catch { }
+
+            try { ExcelApplication = null; } catch { }
+            return dt;
+        }
+    }// end form1
 }
