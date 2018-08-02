@@ -65,15 +65,15 @@ namespace TimeAttendanceForm
 
                     //textBox1.Text = tbContainer.Rows[4][0].ToString();
                     //dataGridView1.DataSource = tbContainer;
-
-                    tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 4,2,5,7);
+                    //tbContainer = LoadExcelFile(pathName, sheetName, 4, 5);
+                    tbContainer = LoadExcelFile_specific_colunm(pathName, sheetName, 4, 5, 2, 5, 7);
                     dataGridView1.DataSource = tbContainer;
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error!");
+                Console.WriteLine(ex.StackTrace);
             }
 
         }// end function button1_Click
@@ -181,6 +181,7 @@ namespace TimeAttendanceForm
 
         public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber,int colDateTime,int colTimeIn,int colTimeOut)
         {
+            
             DataTable dt = new DataTable();
 
             Microsoft.Office.Interop.Excel.Application ExcelApplication = new Microsoft.Office.Interop.Excel.Application();
@@ -202,24 +203,47 @@ namespace TimeAttendanceForm
             dt.TableName = WorksheetName;
 
             Dictionary<string, int> Columns = new Dictionary<string, int>();
+            //----------------------------- get date in month--------------------------------------
+            string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
+            //Console.WriteLine(eeDate);
+            double edate = double.Parse(eeDate);
+            DateTime datetime = DateTime.FromOADate(edate);
 
+            int dayMonth = System.DateTime.DaysInMonth(datetime.Year, datetime.Month);
+
+            //----------------------------- end date in month--------------------------------------
+
+            ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
             for (int i = 0; i < ExcelWorksheet.UsedRange.Columns.Count; i++)
             {
                 string ColumnHeading = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[headerRowNumber, i + 1]).Value2);
 
                 if (!String.IsNullOrWhiteSpace(ColumnHeading) && !dt.Columns.Contains(ColumnHeading))
                 {
-                    Columns.Add(ColumnHeading, i + 1);
 
-                    dt.Columns.Add(ColumnHeading);
+                    if (Columns.ContainsKey(ColumnHeading))
+                    {
+                        Columns.Add(ColumnHeading + "2", i + 1);
+                    }
+                    else
+                    {
+                        Columns.Add(ColumnHeading, i + 1);
+                    }
+
+                    if (i+1 == colDateTime || i + 1 == colTimeIn || i + 1 == colTimeOut)
+                    {
+                        dt.Columns.Add(ColumnHeading);
+                    }
 
                 }
+               
 
             }
-              for (int i = 0; i < ExcelWorksheet.UsedRange.Rows.Count - firstDataRowNumber + 1; i++)
+              for (int i = 0; i < dayMonth; i++)
             {
                 try
                 {
+
                     int ColumnCount = 0;
 
                     DataRow Row = dt.NewRow();
@@ -230,49 +254,66 @@ namespace TimeAttendanceForm
                     {
                         //string data = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
                         string CellContent = null;
+
                         if (kvp.Value == colDateTime)
                         {
-                             //CellContent = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
-                             string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
-                             
-                             double date = double.Parse(sDate);
+                            try
+                            {
+                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
 
-                             CellContent = DateTime.FromOADate(date).ToString("dd/MMM/yyyy");
+                                double date = double.Parse(sDate);
+
+                                CellContent = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                            }
+                            catch
+                            {
+                                CellContent = "";
+                            }
+                            Row[ColumnCount] = CellContent;
+                            ColumnCount++;
+
                         }
                         else if (kvp.Value == colTimeIn || kvp.Value == colTimeOut)
                         {
-                            string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+                            try
+                            {
+                                string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
 
-                            double date = double.Parse(sDate);
+                                double date = double.Parse(sDate);
 
-                            CellContent = DateTime.FromOADate(date).ToString("hh:mm");
+                                CellContent = DateTime.FromOADate(date).ToString("HH:mm");
+                            }
+                            catch
+                            {
+                                CellContent = " ";
+                            }
+                            Row[ColumnCount] = CellContent;
+                            ColumnCount++;
                         }
-                        else
-                        {
-                             CellContent = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, kvp.Value]).Value2);
+                        
+                        
 
-                        }
+                       
 
-                        Row[ColumnCount] = CellContent;
-                        ColumnCount++;
-
-                        if (!string.IsNullOrWhiteSpace(CellContent))
+                        if (!string.IsNullOrWhiteSpace(CellContent) )
                         {
                             RowHasContent = true;
 
                         }
 
                     }
-
+                    DateTime checkDate;
+                    Console.Write(Row[0].ToString());
                     if (RowHasContent)
                     {
                         dt.Rows.Add(Row); ;
 
                     }
-
+                    Console.WriteLine(i);
                 }
-                catch
+                catch(Exception ex)
                 {
+                    Console.WriteLine(ex.StackTrace);
 
                 }
 
