@@ -15,5 +15,23 @@ namespace Test_2
         {
             InitializeComponent();
         }
+
+        private void Switch_Groupbox(bool data,bool cell)
+        // frist value is groupbox data
+        // second value is groupbox cell
+        {
+            gb_Data.Enabled = data;
+            gb_Cell.Enabled = cell;
+        }
+   
+        private void Panel_Groupbox_Cell_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Groupbox(false, true);
+        }
+
+        private void Panel_Groupbox_Data_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Groupbox(true, false);
+        }
     }
 }
