@@ -194,7 +194,7 @@ namespace Test_2
             string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
             //Console.WriteLine(eeDate);
             double edate = double.Parse(eeDate);
-            fileDatetime = DateTime.FromOADate(edate);
+            fileDatetime = DateTime.FromOADate(edate); 
 
             int dayMonth = System.DateTime.DaysInMonth(fileDatetime.Year, fileDatetime.Month);
 
@@ -220,21 +220,32 @@ namespace Test_2
                  
 
                     DataRow Row = dt.NewRow();
-                                      
+
+                    string sDate;
+
+                    double date;
                     try
                     {
-                        string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
+                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
 
-                        double date = double.Parse(sDate);
-
-                        Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                        date = double.Parse(sDate);
                     
+                        Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                    }
+                    catch
+                    {
+                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
+                        
+                        Row[0] = sDate;
+                    }
+                    try
+                    {
                         sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTimeIn]).Value2);
 
                         date = double.Parse(sDate);
 
                         Row[1] = DateTime.FromOADate(date).ToString("HH:mm");
-                    
+
                         sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTimeOut]).Value2);
 
                         date = double.Parse(sDate);
@@ -243,14 +254,15 @@ namespace Test_2
                     }
                     catch
                     {
-                        //MessageBox.Show("Error! please check column.");
                     }
-                    
-                    if (!string.IsNullOrWhiteSpace(Row[0].ToString()) )
+
+
+                    if (!string.IsNullOrWhiteSpace(Row[0].ToString()))
                     {
                         dt.Rows.Add(Row); ;
                     }
-                    
+
+
                 }
                 catch (Exception ex)
                 {
@@ -285,37 +297,50 @@ namespace Test_2
 
         private void Export_Excell()
         {
-            Excel.Application excelApp = new Excel.Application();
-            Excel.Workbook workBook = excelApp.Workbooks.Open(openFileDialog2.FileName);
-            string WorksheetName = workBook.ActiveSheet.Name;
-            Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[WorksheetName];
-
-
-            for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
+            try
             {
+                Excel.Application excelApp = new Excel.Application();
+                Excel.Workbook workBook = excelApp.Workbooks.Open(openFileDialog2.FileName);
+                string WorksheetName = workBook.ActiveSheet.Name;
+                Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[WorksheetName];
 
-                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("A2"))] = lb_Emp_No.Text;
-                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("B2"))] = lb_Name.Text;
-                for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
+
+                for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
                 {
-                    if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
-                        workSheet.Cells[i + 2 , j + 3] = Dgv_Show_Preview.Rows[i].Cells[j].Value.ToString();
-                    else
-                        workSheet.Cells[i + 2 , j + 3] = "";
-                }
-                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("F2"))] = tb_Groupbox_Data_Site_Start.Text;
-                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("G2"))] = tb_Groupbox_Data_Site_Stop.Text;
-                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
-            }
 
-            workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
-            workBook.Close();
-            excelApp.Quit();
-            Console.WriteLine(tb_Dest_file.Text +"\\"+ tb_Groupbox_Data_Project.Text +"_"+ fileDatetime.ToString("MMMyyyy") +".xls");
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("A2"))] = lb_Emp_No.Text;
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("B2"))] = lb_Name.Text;
+                    //for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
+                    //{
+                    //    if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
+                    //        workSheet.Cells[i + 2, j + 3] = Dgv_Show_Preview.Rows[i].Cells[j].Value.ToString();
+                    //    else
+                    //        workSheet.Cells[i + 2, j + 3] = "";
+                    //}
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))] = Dgv_Show_Preview.Rows[i].Cells[0].Value.ToString();
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("D2"))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("E2"))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("F2"))] = tb_Groupbox_Data_Site_Start.Text;
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("G2"))] = tb_Groupbox_Data_Site_Stop.Text;
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
+                }
+
+                workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
+                workBook.Close();
+                excelApp.Quit();
+                Console.WriteLine(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
+            }
+            catch(Exception ex) {
+                Console.WriteLine(ex.StackTrace);
+            }
         }
 
         private void btn_Export_Click(object sender, EventArgs e)
         {
+            if (Dgv_Show_Preview.Rows.Count == 0)
+            {
+                btn_Preview_Click(null, e);
+            }
             Export_Excell();
         }
 
