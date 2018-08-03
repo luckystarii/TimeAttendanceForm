@@ -202,10 +202,7 @@ namespace Test_2
                  
 
                     DataRow Row = dt.NewRow();
-
-                    bool RowHasContent = false;
-
-                   
+                                      
                     try
                     {
                         string sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
@@ -275,6 +272,21 @@ namespace Test_2
             string WorksheetName = workBook.ActiveSheet.Name;
             Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[WorksheetName];
 
+
+            for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
+            {
+                
+                for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
+                {
+                    if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
+                        workSheet.Cells[i + 2 , j + 3] = Dgv_Show_Preview.Rows[i].Cells[j].Value.ToString();
+                    else
+                        workSheet.Cells[i + 2 , j + 3] = "";
+                }
+                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("F2"))] = tb_Groupbox_Data_Site_Start.Text;
+                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("G2"))] = tb_Groupbox_Data_Site_Stop.Text;
+                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
+            }
 
             workBook.SaveAs(tb_Dest_file.Text+"\\sos.xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
             workBook.Close();
