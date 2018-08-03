@@ -75,6 +75,10 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lb_Emp_No = new System.Windows.Forms.Label();
+            this.lb_Name = new System.Windows.Forms.Label();
             this.panel_Import_Export.SuspendLayout();
             this.panel_Project_Detail.SuspendLayout();
             this.gb_Cell.SuspendLayout();
@@ -475,11 +479,11 @@
             this.Dgv_Show_Preview.AllowUserToResizeRows = false;
             this.Dgv_Show_Preview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Dgv_Show_Preview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Show_Preview.Location = new System.Drawing.Point(149, 8);
+            this.Dgv_Show_Preview.Location = new System.Drawing.Point(149, 38);
             this.Dgv_Show_Preview.Name = "Dgv_Show_Preview";
             this.Dgv_Show_Preview.ReadOnly = true;
             this.Dgv_Show_Preview.RowHeadersVisible = false;
-            this.Dgv_Show_Preview.Size = new System.Drawing.Size(322, 195);
+            this.Dgv_Show_Preview.Size = new System.Drawing.Size(322, 165);
             this.Dgv_Show_Preview.TabIndex = 5;
             this.Dgv_Show_Preview.TabStop = false;
             // 
@@ -529,6 +533,10 @@
             // 
             // panel_Cell_Mapping
             // 
+            this.panel_Cell_Mapping.Controls.Add(this.lb_Name);
+            this.panel_Cell_Mapping.Controls.Add(this.lb_Emp_No);
+            this.panel_Cell_Mapping.Controls.Add(this.label18);
+            this.panel_Cell_Mapping.Controls.Add(this.label17);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Name);
             this.panel_Cell_Mapping.Controls.Add(this.btn_Preview);
             this.panel_Cell_Mapping.Controls.Add(this.label9);
@@ -558,6 +566,44 @@
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(145, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(80, 19);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "Emp No.   :";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(286, 16);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(53, 19);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "Name :";
+            // 
+            // lb_Emp_No
+            // 
+            this.lb_Emp_No.AutoSize = true;
+            this.lb_Emp_No.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Emp_No.Location = new System.Drawing.Point(221, 16);
+            this.lb_Emp_No.Name = "lb_Emp_No";
+            this.lb_Emp_No.Size = new System.Drawing.Size(0, 19);
+            this.lb_Emp_No.TabIndex = 37;
+            // 
+            // lb_Name
+            // 
+            this.lb_Name.AutoSize = true;
+            this.lb_Name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Name.Location = new System.Drawing.Point(335, 16);
+            this.lb_Name.Name = "lb_Name";
+            this.lb_Name.Size = new System.Drawing.Size(0, 19);
+            this.lb_Name.TabIndex = 38;
             // 
             // Form1
             // 
@@ -634,6 +680,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.Label lb_Name;
+        private System.Windows.Forms.Label lb_Emp_No;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
     }
 }
 
