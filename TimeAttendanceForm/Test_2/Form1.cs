@@ -13,9 +13,10 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Test_2
 {
+
     public partial class Form1 : Form
     {
-        //public OpenFileDialog openFileDialog1;
+        public static DateTime fileDatetime;
         public Form1()
         {
             InitializeComponent();
@@ -83,7 +84,9 @@ namespace Test_2
                                                                 , getIntFromAddr(tb_Date.Text)
                                                                 , GetColumnNumber(getStringFromAddr(tb_Date.Text))
                                                                 , GetColumnNumber(getStringFromAddr(tb_Time_In.Text))
-                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)));
+                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text))
+                                                                , tb_Emp_No.Text
+                                                                , tb_Name.Text);
                         Dgv_Show_Preview.DataSource = tbContainer;
                     }
                     else
@@ -128,6 +131,13 @@ namespace Test_2
 
             return Int32.Parse(match.Groups["Numeric"].Value);
         }
+        public string getIntOnly(string str)
+        {
+            Regex regex = new Regex(@"^\d$");
+            var match = regex.Match(str);
+
+            return match.Groups[0].Value;
+        }
         public static int GetColumnNumber(string name)
         {
             int number = 0;
@@ -155,7 +165,8 @@ namespace Test_2
 
             return columnName;
         }
-        public static DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut)
+        
+        public DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut,string colEmpNo,string colEmpName)
         {
 
             DataTable dt = new DataTable();
@@ -183,14 +194,21 @@ namespace Test_2
             string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
             //Console.WriteLine(eeDate);
             double edate = double.Parse(eeDate);
-            DateTime datetime = DateTime.FromOADate(edate);
+            fileDatetime = DateTime.FromOADate(edate);
 
-            int dayMonth = System.DateTime.DaysInMonth(datetime.Year, datetime.Month);
+            int dayMonth = System.DateTime.DaysInMonth(fileDatetime.Year, fileDatetime.Month);
 
             //----------------------------- end date in month--------------------------------------
+            //----------------------------- get emp no --------------------------------------------
+            lb_Emp_No.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[ getIntFromAddr(colEmpNo), GetColumnNumber( getStringFromAddr(colEmpNo))]).Value2);
+            lb_Emp_No.Text = Regex.Match(lb_Emp_No.Text, @"\d+").Value;
+            //----------------------------- end emp no --------------------------------------------
+            //----------------------------- get emp name --------------------------------------------
+            lb_Name.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(colEmpName), GetColumnNumber(getStringFromAddr(colEmpName))]).Value2);
+            //----------------------------- end emp name --------------------------------------------
 
             ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
-
+           
             dt.Columns.Add("Date");
             dt.Columns.Add("Time IN");
             dt.Columns.Add("Time Out");
@@ -275,7 +293,9 @@ namespace Test_2
 
             for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
             {
-                
+
+                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("A2"))] = lb_Emp_No.Text;
+                workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("B2"))] = lb_Name.Text;
                 for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
                 {
                     if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
@@ -288,10 +308,10 @@ namespace Test_2
                 workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
             }
 
-            workBook.SaveAs(tb_Dest_file.Text+"\\sos.xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
+            workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
             workBook.Close();
             excelApp.Quit();
-            Console.WriteLine(tb_Dest_file.Text + "sos.xls");
+            Console.WriteLine(tb_Dest_file.Text +"\\"+ tb_Groupbox_Data_Project.Text +"_"+ fileDatetime.ToString("MMMyyyy") +".xls");
         }
 
         private void btn_Export_Click(object sender, EventArgs e)
@@ -301,6 +321,7 @@ namespace Test_2
 
         private void btn_Browse_Template_file_Click(object sender, EventArgs e)
         {
+            
             openFileDialog2.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
             openFileDialog2.FilterIndex = 3;
 
