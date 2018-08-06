@@ -1,6 +1,6 @@
 ﻿namespace Test_2
 {
-    partial class Form1
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.
@@ -315,30 +315,6 @@
             // 
             // Panel_Groupbox_Cell_Project
             // 
-            this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(-1, 18);
-            this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
-            this.Panel_Groupbox_Cell_Project.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Project.TabIndex = 32;
-            this.Panel_Groupbox_Cell_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Project_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Site_Start
-            // 
-            this.Panel_Groupbox_Cell_Site_Start.Location = new System.Drawing.Point(-1, 53);
-            this.Panel_Groupbox_Cell_Site_Start.Name = "Panel_Groupbox_Cell_Site_Start";
-            this.Panel_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Site_Start.TabIndex = 33;
-            this.Panel_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Site_Stop
-            // 
-            this.Panel_Groupbox_Cell_Site_Stop.Location = new System.Drawing.Point(-2, 91);
-            this.Panel_Groupbox_Cell_Site_Stop.Name = "Panel_Groupbox_Cell_Site_Stop";
-            this.Panel_Groupbox_Cell_Site_Stop.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Site_Stop.TabIndex = 34;
-            this.Panel_Groupbox_Cell_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Project
-            // 
             this.Panel_Groupbox_Cell_Project.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(-1, 18);
             this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
@@ -648,7 +624,7 @@
             this.panel_Cell_Mapping.Controls.Add(this.label12);
             this.panel_Cell_Mapping.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel_Cell_Mapping.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_Cell_Mapping.Location = new System.Drawing.Point(3, 314);
+            this.panel_Cell_Mapping.Location = new System.Drawing.Point(3, 322);
             this.panel_Cell_Mapping.Name = "panel_Cell_Mapping";
             this.panel_Cell_Mapping.Size = new System.Drawing.Size(478, 248);
             this.panel_Cell_Mapping.TabIndex = 2;
@@ -716,7 +692,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -728,10 +704,10 @@
             this.tabPage1.Controls.Add(this.panel_Cell_Mapping);
             this.tabPage1.Controls.Add(this.panel_Project_Detail);
             this.tabPage1.Controls.Add(this.panel_Import_Export);
-            this.tabPage1.Location = new System.Drawing.Point(4, 32);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(484, 565);
+            this.tabPage1.Size = new System.Drawing.Size(484, 573);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Import/Export";
             this.tabPage1.UseVisualStyleBackColor = true;

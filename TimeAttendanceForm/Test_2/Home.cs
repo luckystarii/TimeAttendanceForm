@@ -14,7 +14,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 namespace Test_2
 {
 
-    public partial class Form1 : Form
+    public partial class Home : Form
     {
         public static DateTime fileDatetime;
 
@@ -22,7 +22,7 @@ namespace Test_2
         public static String SiteStartTime;
         public static String SiteStopTime;
 
-        public Form1()
+        public Home()
         {
             InitializeComponent();
             Default_Data_AND_Cell();
@@ -427,11 +427,11 @@ namespace Test_2
                 workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
                 workBook.Close();
                 excelApp.Quit();
-                MessageBox.Show("Export Complete.");
+                MessageBox.Show("Export Complete. \n File : "+ tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Export Error! Please check input.");
+                MessageBox.Show("Export Error! Please check Project Detail.");
             }
         }
 
@@ -441,7 +441,10 @@ namespace Test_2
             {
                 btn_Preview_Click(null, e);
             }
-            Export_Excell();
+            if (Dgv_Show_Preview.Rows.Count != 0)
+            {
+                Export_Excell();
+            }
         }
 
         private void btn_Browse_Template_file_Click(object sender, EventArgs e)
