@@ -25,7 +25,16 @@ namespace Test_2
         public Form1()
         {
             InitializeComponent();
+            Default_Data_AND_Cell();
             openFileDialog1 = new OpenFileDialog();
+
+        }
+
+        private void Default_Data_AND_Cell()
+        {
+            tb_Groupbox_Cell_Project.Enabled = false;
+            tb_Groupbox_Cell_Site_Start.Enabled = false;
+            tb_Groupbox_Cell_Site_Stop.Enabled = false;
         }
 
         private void Switch_Gb_Project(bool Data,bool Cell)
@@ -44,6 +53,17 @@ namespace Test_2
         {
             tb_Groupbox_Data_Site_Stop.Enabled = Data;
             tb_Groupbox_Cell_Site_Stop.Enabled = Cell;
+        }
+
+        private void All_Clear_Data()
+        {
+            tb_Target_file.Text = "";
+            tb_Template_file.Text = "";
+            tb_Dest_file.Text = "";
+            tb_Groupbox_Data_Project.Text = "";
+            tb_Groupbox_Cell_Project.Text = "";
+            tb_Groupbox_Data_Site_Start.Text = "";
+            tb_Groupbox_Data_Site_Stop.Text = "";
         }
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
@@ -421,6 +441,11 @@ namespace Test_2
         private void Panel_Groupbox_Cell_Site_Stop_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Site_Stop(false, true);
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }// end form1
 }
