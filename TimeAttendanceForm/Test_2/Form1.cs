@@ -17,28 +17,29 @@ namespace Test_2
     public partial class Form1 : Form
     {
         public static DateTime fileDatetime;
+
         public Form1()
         {
             InitializeComponent();
             openFileDialog1 = new OpenFileDialog();
         }
 
-        private void Switch_Groupbox(bool data,bool cell)
-        // frist value is groupbox data
-        // second value is groupbox cell
+        private void Switch_Gb_Project(bool Data,bool Cell)
         {
-            gb_Data.Enabled = data;
-            gb_Cell.Enabled = cell;
-        }
-   
-        private void Panel_Groupbox_Cell_MouseClick(object sender, MouseEventArgs e)
-        {
-            Switch_Groupbox(false, true);
+            Panel_Groupbox_Data_Project.Enabled = Data;
+            Panel_Groupbox_Cell_Project.Enabled = Cell;
         }
 
-        private void Panel_Groupbox_Data_MouseClick(object sender, MouseEventArgs e)
+        private void Switch_Gb_Site_Start(bool Data, bool Cell)
         {
-            Switch_Groupbox(true, false);
+            Panel_Groupbox_Data_Site_Start.Enabled = Data;
+            Panel_Groupbox_Cell_Site_Start.Enabled = Cell;
+        }
+
+        private void Switch_Gb_Site_Stop(bool Data, bool Cell)
+        {
+            Panel_Groupbox_Data_Site_Stop.Enabled = Data;
+            Panel_Groupbox_Cell_Site_Stop.Enabled = Cell;
         }
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
@@ -373,6 +374,36 @@ namespace Test_2
                     Console.WriteLine(ex.StackTrace);
                 }
             }
+        }
+
+        private void Panel_Groupbox_Data_Project_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Project(true, false);
+        }
+
+        private void Panel_Groupbox_Cell_Project_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Project(false, true);
+        }
+
+        private void Panel_Groupbox_Data_Site_Start_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Site_Start(true, false);
+        }
+
+        private void Panel_Groupbox_Cell_Site_Start_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Site_Start(false, true);
+        }
+
+        private void Panel_Groupbox_Data_Site_Stop_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Site_Stop(true, false);
+        }
+
+        private void Panel_Groupbox_Cell_Site_Stop_MouseClick(object sender, MouseEventArgs e)
+        {
+            Switch_Gb_Site_Stop(false, true);
         }
     }// end form1
 }

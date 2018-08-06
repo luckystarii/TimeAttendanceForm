@@ -53,8 +53,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.Panel_Groupbox_Data = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Cell = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Data_Project = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Cell_Project = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.tb_Emp_No = new System.Windows.Forms.TextBox();
             this.tb_Date = new System.Windows.Forms.TextBox();
@@ -70,39 +70,70 @@
             this.btn_Export = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Preview = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel_Cell_Mapping = new System.Windows.Forms.Panel();
+            this.lb_Name = new System.Windows.Forms.Label();
+            this.lb_Emp_No = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.lb_Emp_No = new System.Windows.Forms.Label();
-            this.lb_Name = new System.Windows.Forms.Label();
+            this.Panel_Groupbox_Cell_Site_Start = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Cell_Site_Stop = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Data_Site_Start = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Data_Site_Stop = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.panel_Import_Export.SuspendLayout();
             this.panel_Project_Detail.SuspendLayout();
             this.gb_Cell.SuspendLayout();
             this.gb_Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Show_Preview)).BeginInit();
             this.panel_Cell_Mapping.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Import_Export
             // 
-            this.panel_Import_Export.Controls.Add(this.btn_Browse_Template_file);
             this.panel_Import_Export.Controls.Add(this.btn_Browse_Dest_file);
             this.panel_Import_Export.Controls.Add(this.btn_Browse_Target_file);
-            this.panel_Import_Export.Controls.Add(this.tb_Template_file);
             this.panel_Import_Export.Controls.Add(this.tb_Dest_file);
             this.panel_Import_Export.Controls.Add(this.tb_Target_file);
             this.panel_Import_Export.Controls.Add(this.label5);
             this.panel_Import_Export.Controls.Add(this.label4);
             this.panel_Import_Export.Controls.Add(this.label3);
             this.panel_Import_Export.Controls.Add(this.label1);
+            this.panel_Import_Export.Controls.Add(this.tb_Template_file);
+            this.panel_Import_Export.Controls.Add(this.btn_Browse_Template_file);
             this.panel_Import_Export.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Import_Export.Location = new System.Drawing.Point(0, 0);
+            this.panel_Import_Export.Location = new System.Drawing.Point(3, 3);
             this.panel_Import_Export.Name = "panel_Import_Export";
-            this.panel_Import_Export.Size = new System.Drawing.Size(484, 147);
+            this.panel_Import_Export.Size = new System.Drawing.Size(478, 147);
             this.panel_Import_Export.TabIndex = 0;
             // 
             // btn_Browse_Template_file
@@ -175,7 +206,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(7, 114);
+            this.label5.Location = new System.Drawing.Point(7, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 19);
             this.label5.TabIndex = 3;
@@ -185,7 +216,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(34, 78);
+            this.label4.Location = new System.Drawing.Point(34, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 19);
             this.label4.TabIndex = 2;
@@ -220,12 +251,16 @@
             this.panel_Project_Detail.Controls.Add(this.label8);
             this.panel_Project_Detail.Controls.Add(this.label6);
             this.panel_Project_Detail.Controls.Add(this.label7);
-            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Data);
-            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Cell);
-            this.panel_Project_Detail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Project_Detail.Location = new System.Drawing.Point(0, 147);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Data_Project);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Cell_Project);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Cell_Site_Start);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Cell_Site_Stop);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Data_Site_Start);
+            this.panel_Project_Detail.Controls.Add(this.Panel_Groupbox_Data_Site_Stop);
+            this.panel_Project_Detail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Project_Detail.Location = new System.Drawing.Point(3, 150);
             this.panel_Project_Detail.Name = "panel_Project_Detail";
-            this.panel_Project_Detail.Size = new System.Drawing.Size(484, 414);
+            this.panel_Project_Detail.Size = new System.Drawing.Size(478, 170);
             this.panel_Project_Detail.TabIndex = 1;
             // 
             // label10
@@ -355,21 +390,21 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Site Start";
             // 
-            // Panel_Groupbox_Data
+            // Panel_Groupbox_Data_Project
             // 
-            this.Panel_Groupbox_Data.Location = new System.Drawing.Point(88, 30);
-            this.Panel_Groupbox_Data.Name = "Panel_Groupbox_Data";
-            this.Panel_Groupbox_Data.Size = new System.Drawing.Size(298, 130);
-            this.Panel_Groupbox_Data.TabIndex = 31;
-            this.Panel_Groupbox_Data.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_MouseClick);
+            this.Panel_Groupbox_Data_Project.Location = new System.Drawing.Point(88, 44);
+            this.Panel_Groupbox_Data_Project.Name = "Panel_Groupbox_Data_Project";
+            this.Panel_Groupbox_Data_Project.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Project.TabIndex = 31;
+            this.Panel_Groupbox_Data_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Project_MouseClick);
             // 
-            // Panel_Groupbox_Cell
+            // Panel_Groupbox_Cell_Project
             // 
-            this.Panel_Groupbox_Cell.Location = new System.Drawing.Point(389, 30);
-            this.Panel_Groupbox_Cell.Name = "Panel_Groupbox_Cell";
-            this.Panel_Groupbox_Cell.Size = new System.Drawing.Size(75, 130);
-            this.Panel_Groupbox_Cell.TabIndex = 32;
-            this.Panel_Groupbox_Cell.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_MouseClick);
+            this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(389, 44);
+            this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
+            this.Panel_Groupbox_Cell_Project.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Project.TabIndex = 32;
+            this.Panel_Groupbox_Cell_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Project_MouseClick);
             // 
             // label9
             // 
@@ -519,20 +554,9 @@
             this.btn_Preview.UseVisualStyleBackColor = true;
             this.btn_Preview.Click += new System.EventHandler(this.btn_Preview_Click);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.LightGray;
-            this.label16.Location = new System.Drawing.Point(11, -17);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(465, 19);
-            this.label16.TabIndex = 34;
-            this.label16.Text = "_________________________________________________________";
-            // 
             // panel_Cell_Mapping
             // 
+            this.panel_Cell_Mapping.Controls.Add(this.label16);
             this.panel_Cell_Mapping.Controls.Add(this.lb_Name);
             this.panel_Cell_Mapping.Controls.Add(this.lb_Emp_No);
             this.panel_Cell_Mapping.Controls.Add(this.label18);
@@ -547,35 +571,34 @@
             this.panel_Cell_Mapping.Controls.Add(this.Dgv_Show_Preview);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Time_Out);
             this.panel_Cell_Mapping.Controls.Add(this.label15);
-            this.panel_Cell_Mapping.Controls.Add(this.label16);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Time_In);
             this.panel_Cell_Mapping.Controls.Add(this.label14);
             this.panel_Cell_Mapping.Controls.Add(this.label11);
             this.panel_Cell_Mapping.Controls.Add(this.label13);
             this.panel_Cell_Mapping.Controls.Add(this.label12);
             this.panel_Cell_Mapping.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_Cell_Mapping.Location = new System.Drawing.Point(0, 313);
+            this.panel_Cell_Mapping.Location = new System.Drawing.Point(3, 314);
             this.panel_Cell_Mapping.Name = "panel_Cell_Mapping";
-            this.panel_Cell_Mapping.Size = new System.Drawing.Size(484, 248);
+            this.panel_Cell_Mapping.Size = new System.Drawing.Size(478, 248);
             this.panel_Cell_Mapping.TabIndex = 2;
             // 
-            // openFileDialog1
+            // lb_Name
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.lb_Name.AutoSize = true;
+            this.lb_Name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Name.Location = new System.Drawing.Point(335, 16);
+            this.lb_Name.Name = "lb_Name";
+            this.lb_Name.Size = new System.Drawing.Size(0, 19);
+            this.lb_Name.TabIndex = 38;
             // 
-            // openFileDialog2
+            // lb_Emp_No
             // 
-            this.openFileDialog2.FileName = "openFileDialog2";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(145, 16);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(80, 19);
-            this.label17.TabIndex = 35;
-            this.label17.Text = "Emp No.   :";
+            this.lb_Emp_No.AutoSize = true;
+            this.lb_Emp_No.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Emp_No.Location = new System.Drawing.Point(221, 16);
+            this.lb_Emp_No.Name = "lb_Emp_No";
+            this.lb_Emp_No.Size = new System.Drawing.Size(0, 19);
+            this.lb_Emp_No.TabIndex = 37;
             // 
             // label18
             // 
@@ -587,32 +610,324 @@
             this.label18.TabIndex = 36;
             this.label18.Text = "Name :";
             // 
-            // lb_Emp_No
+            // label17
             // 
-            this.lb_Emp_No.AutoSize = true;
-            this.lb_Emp_No.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Emp_No.Location = new System.Drawing.Point(221, 16);
-            this.lb_Emp_No.Name = "lb_Emp_No";
-            this.lb_Emp_No.Size = new System.Drawing.Size(0, 19);
-            this.lb_Emp_No.TabIndex = 37;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(145, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(80, 19);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "Emp No.   :";
             // 
-            // lb_Name
+            // openFileDialog1
             // 
-            this.lb_Name.AutoSize = true;
-            this.lb_Name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Name.Location = new System.Drawing.Point(335, 16);
-            this.lb_Name.Name = "lb_Name";
-            this.lb_Name.Size = new System.Drawing.Size(0, 19);
-            this.lb_Name.TabIndex = 38;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
+            // Panel_Groupbox_Cell_Site_Start
+            // 
+            this.Panel_Groupbox_Cell_Site_Start.Location = new System.Drawing.Point(389, 80);
+            this.Panel_Groupbox_Cell_Site_Start.Name = "Panel_Groupbox_Cell_Site_Start";
+            this.Panel_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Start.TabIndex = 33;
+            this.Panel_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Site_Stop
+            // 
+            this.Panel_Groupbox_Cell_Site_Stop.Location = new System.Drawing.Point(389, 117);
+            this.Panel_Groupbox_Cell_Site_Stop.Name = "Panel_Groupbox_Cell_Site_Stop";
+            this.Panel_Groupbox_Cell_Site_Stop.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Stop.TabIndex = 34;
+            this.Panel_Groupbox_Cell_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
+            // 
+            // Panel_Groupbox_Data_Site_Start
+            // 
+            this.Panel_Groupbox_Data_Site_Start.Location = new System.Drawing.Point(88, 80);
+            this.Panel_Groupbox_Data_Site_Start.Name = "Panel_Groupbox_Data_Site_Start";
+            this.Panel_Groupbox_Data_Site_Start.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Site_Start.TabIndex = 32;
+            this.Panel_Groupbox_Data_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Data_Site_Stop
+            // 
+            this.Panel_Groupbox_Data_Site_Stop.Location = new System.Drawing.Point(88, 117);
+            this.Panel_Groupbox_Data_Site_Stop.Name = "Panel_Groupbox_Data_Site_Stop";
+            this.Panel_Groupbox_Data_Site_Stop.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Site_Stop.TabIndex = 35;
+            this.Panel_Groupbox_Data_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Stop_MouseClick);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(492, 601);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel_Cell_Mapping);
+            this.tabPage1.Controls.Add(this.panel_Project_Detail);
+            this.tabPage1.Controls.Add(this.panel_Import_Export);
+            this.tabPage1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(484, 565);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Import/Export";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabPage2.Location = new System.Drawing.Point(4, 32);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(484, 565);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Config";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.LightGray;
+            this.label16.Location = new System.Drawing.Point(12, -16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(465, 19);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "_________________________________________________________";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.label22);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.label26);
+            this.panel1.Controls.Add(this.label27);
+            this.panel1.Controls.Add(this.label28);
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(478, 559);
+            this.panel1.TabIndex = 0;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.LightGray;
+            this.label19.Location = new System.Drawing.Point(12, -16);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(465, 19);
+            this.label19.TabIndex = 36;
+            this.label19.Text = "_________________________________________________________";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(165, 97);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(48, 26);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "B2";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(9, 8);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(211, 22);
+            this.label24.TabIndex = 20;
+            this.label24.Text = "Cell Mapping for Export";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(165, 132);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(48, 26);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.Text = "C2";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(165, 62);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(48, 26);
+            this.textBox3.TabIndex = 0;
+            this.textBox3.Text = "A2";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(165, 202);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(48, 26);
+            this.textBox4.TabIndex = 4;
+            this.textBox4.Text = "E2";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(93, 205);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 19);
+            this.label25.TabIndex = 28;
+            this.label25.Text = "Time Out";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(165, 167);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(48, 26);
+            this.textBox5.TabIndex = 3;
+            this.textBox5.Text = "D2";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(104, 170);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(54, 19);
+            this.label26.TabIndex = 27;
+            this.label26.Text = "Time In";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(94, 65);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(65, 19);
+            this.label27.TabIndex = 24;
+            this.label27.Text = "Emp No.";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(121, 135);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(38, 19);
+            this.label28.TabIndex = 26;
+            this.label28.Text = "Date";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(113, 100);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(46, 19);
+            this.label29.TabIndex = 25;
+            this.label29.Text = "Name";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(336, 62);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(48, 26);
+            this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "F2";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(336, 132);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(48, 26);
+            this.textBox7.TabIndex = 7;
+            this.textBox7.Text = "H2";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(234, 135);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(94, 19);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Project Name";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(336, 97);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(48, 26);
+            this.textBox8.TabIndex = 6;
+            this.textBox8.Text = "G2";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(263, 100);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 19);
+            this.label21.TabIndex = 41;
+            this.label21.Text = "Site Stop";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(263, 65);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 19);
+            this.label22.TabIndex = 40;
+            this.label22.Text = "Site Start";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label23.Location = new System.Drawing.Point(326, 540);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(155, 22);
+            this.label23.TabIndex = 43;
+            this.label23.Text = "DOTNET @2018";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 561);
-            this.Controls.Add(this.panel_Cell_Mapping);
-            this.Controls.Add(this.panel_Project_Detail);
-            this.Controls.Add(this.panel_Import_Export);
+            this.ClientSize = new System.Drawing.Size(492, 601);
+            this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "C.S.I. Group - Time Attendance";
@@ -627,6 +942,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Show_Preview)).EndInit();
             this.panel_Cell_Mapping.ResumeLayout(false);
             this.panel_Cell_Mapping.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -672,10 +992,9 @@
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_Export;
         private System.Windows.Forms.DataGridView Dgv_Show_Preview;
-        private System.Windows.Forms.Panel Panel_Groupbox_Data;
-        private System.Windows.Forms.Panel Panel_Groupbox_Cell;
+        private System.Windows.Forms.Panel Panel_Groupbox_Data_Project;
+        private System.Windows.Forms.Panel Panel_Groupbox_Cell_Project;
         private System.Windows.Forms.Button btn_Preview;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel_Cell_Mapping;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
@@ -684,6 +1003,34 @@
         private System.Windows.Forms.Label lb_Emp_No;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Panel Panel_Groupbox_Cell_Site_Start;
+        private System.Windows.Forms.Panel Panel_Groupbox_Cell_Site_Stop;
+        private System.Windows.Forms.Panel Panel_Groupbox_Data_Site_Start;
+        private System.Windows.Forms.Panel Panel_Groupbox_Data_Site_Stop;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
     }
 }
 
