@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Test_2.Properties
+namespace TAIE.Properties
 {
 
 

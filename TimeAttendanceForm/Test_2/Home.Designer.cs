@@ -1,4 +1,4 @@
-﻿namespace Test_2
+﻿namespace TAIE
 {
     partial class Home
     {

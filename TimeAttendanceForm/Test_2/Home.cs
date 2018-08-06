@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.WindowsAPICodePack.Dialogs;
 
-namespace Test_2
+namespace TAIE
 {
 
     public partial class Home : Form
