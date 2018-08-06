@@ -45,20 +45,20 @@
             this.tb_Groupbox_Cell_Project = new System.Windows.Forms.TextBox();
             this.tb_Groupbox_Cell_Site_Stop = new System.Windows.Forms.TextBox();
             this.tb_Groupbox_Cell_Site_Start = new System.Windows.Forms.TextBox();
+            this.Panel_Groupbox_Cell_Project = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Cell_Site_Start = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Cell_Site_Stop = new System.Windows.Forms.Panel();
             this.gb_Data = new System.Windows.Forms.GroupBox();
             this.tb_Groupbox_Data_Project = new System.Windows.Forms.TextBox();
             this.tb_Groupbox_Data_Site_Stop = new System.Windows.Forms.TextBox();
             this.tb_Groupbox_Data_Site_Start = new System.Windows.Forms.TextBox();
+            this.Panel_Groupbox_Data_Site_Stop = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Data_Site_Start = new System.Windows.Forms.Panel();
+            this.Panel_Groupbox_Data_Project = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.Panel_Groupbox_Data_Project = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Cell_Project = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Cell_Site_Start = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Cell_Site_Stop = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Data_Site_Start = new System.Windows.Forms.Panel();
-            this.Panel_Groupbox_Data_Site_Stop = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.tb_Emp_No = new System.Windows.Forms.TextBox();
             this.tb_Date = new System.Windows.Forms.TextBox();
@@ -88,20 +88,20 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.export_site_start = new System.Windows.Forms.TextBox();
+            this.export_project_name = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.export_site_stop = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.export_emp_name = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.export_date = new System.Windows.Forms.TextBox();
+            this.export_emp_no = new System.Windows.Forms.TextBox();
+            this.export_time_out = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.export_time_in = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -313,6 +313,33 @@
             this.tb_Groupbox_Cell_Site_Start.TabIndex = 1;
             this.tb_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
             // 
+            // Panel_Groupbox_Cell_Project
+            // 
+            this.Panel_Groupbox_Cell_Project.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(-1, 18);
+            this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
+            this.Panel_Groupbox_Cell_Project.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Project.TabIndex = 32;
+            this.Panel_Groupbox_Cell_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Project_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Site_Start
+            // 
+            this.Panel_Groupbox_Cell_Site_Start.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Cell_Site_Start.Location = new System.Drawing.Point(-1, 53);
+            this.Panel_Groupbox_Cell_Site_Start.Name = "Panel_Groupbox_Cell_Site_Start";
+            this.Panel_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Start.TabIndex = 33;
+            this.Panel_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Site_Stop
+            // 
+            this.Panel_Groupbox_Cell_Site_Stop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Cell_Site_Stop.Location = new System.Drawing.Point(-2, 91);
+            this.Panel_Groupbox_Cell_Site_Stop.Name = "Panel_Groupbox_Cell_Site_Stop";
+            this.Panel_Groupbox_Cell_Site_Stop.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Stop.TabIndex = 34;
+            this.Panel_Groupbox_Cell_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
+            // 
             // gb_Data
             // 
             this.gb_Data.Controls.Add(this.tb_Groupbox_Data_Project);
@@ -357,6 +384,33 @@
             this.tb_Groupbox_Data_Site_Start.TabIndex = 1;
             this.tb_Groupbox_Data_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Start_MouseClick);
             // 
+            // Panel_Groupbox_Data_Site_Stop
+            // 
+            this.Panel_Groupbox_Data_Site_Stop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Data_Site_Stop.Location = new System.Drawing.Point(-2, 90);
+            this.Panel_Groupbox_Data_Site_Stop.Name = "Panel_Groupbox_Data_Site_Stop";
+            this.Panel_Groupbox_Data_Site_Stop.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Site_Stop.TabIndex = 35;
+            this.Panel_Groupbox_Data_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Stop_MouseClick);
+            // 
+            // Panel_Groupbox_Data_Site_Start
+            // 
+            this.Panel_Groupbox_Data_Site_Start.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Data_Site_Start.Location = new System.Drawing.Point(-2, 52);
+            this.Panel_Groupbox_Data_Site_Start.Name = "Panel_Groupbox_Data_Site_Start";
+            this.Panel_Groupbox_Data_Site_Start.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Site_Start.TabIndex = 32;
+            this.Panel_Groupbox_Data_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Data_Project
+            // 
+            this.Panel_Groupbox_Data_Project.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Panel_Groupbox_Data_Project.Location = new System.Drawing.Point(-3, 17);
+            this.Panel_Groupbox_Data_Project.Name = "Panel_Groupbox_Data_Project";
+            this.Panel_Groupbox_Data_Project.Size = new System.Drawing.Size(298, 34);
+            this.Panel_Groupbox_Data_Project.TabIndex = 31;
+            this.Panel_Groupbox_Data_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Project_MouseClick);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -396,60 +450,6 @@
             this.label7.Size = new System.Drawing.Size(65, 19);
             this.label7.TabIndex = 11;
             this.label7.Text = "Site Start";
-            // 
-            // Panel_Groupbox_Data_Project
-            // 
-            this.Panel_Groupbox_Data_Project.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Data_Project.Location = new System.Drawing.Point(-3, 17);
-            this.Panel_Groupbox_Data_Project.Name = "Panel_Groupbox_Data_Project";
-            this.Panel_Groupbox_Data_Project.Size = new System.Drawing.Size(298, 34);
-            this.Panel_Groupbox_Data_Project.TabIndex = 31;
-            this.Panel_Groupbox_Data_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Project_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Project
-            // 
-            this.Panel_Groupbox_Cell_Project.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(-1, 18);
-            this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
-            this.Panel_Groupbox_Cell_Project.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Project.TabIndex = 32;
-            this.Panel_Groupbox_Cell_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Project_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Site_Start
-            // 
-            this.Panel_Groupbox_Cell_Site_Start.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Cell_Site_Start.Location = new System.Drawing.Point(-1, 53);
-            this.Panel_Groupbox_Cell_Site_Start.Name = "Panel_Groupbox_Cell_Site_Start";
-            this.Panel_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Site_Start.TabIndex = 33;
-            this.Panel_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
-            // 
-            // Panel_Groupbox_Cell_Site_Stop
-            // 
-            this.Panel_Groupbox_Cell_Site_Stop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Cell_Site_Stop.Location = new System.Drawing.Point(-2, 91);
-            this.Panel_Groupbox_Cell_Site_Stop.Name = "Panel_Groupbox_Cell_Site_Stop";
-            this.Panel_Groupbox_Cell_Site_Stop.Size = new System.Drawing.Size(75, 33);
-            this.Panel_Groupbox_Cell_Site_Stop.TabIndex = 34;
-            this.Panel_Groupbox_Cell_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
-            // 
-            // Panel_Groupbox_Data_Site_Start
-            // 
-            this.Panel_Groupbox_Data_Site_Start.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Data_Site_Start.Location = new System.Drawing.Point(-2, 52);
-            this.Panel_Groupbox_Data_Site_Start.Name = "Panel_Groupbox_Data_Site_Start";
-            this.Panel_Groupbox_Data_Site_Start.Size = new System.Drawing.Size(298, 34);
-            this.Panel_Groupbox_Data_Site_Start.TabIndex = 32;
-            this.Panel_Groupbox_Data_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Start_MouseClick);
-            // 
-            // Panel_Groupbox_Data_Site_Stop
-            // 
-            this.Panel_Groupbox_Data_Site_Stop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Panel_Groupbox_Data_Site_Stop.Location = new System.Drawing.Point(-2, 90);
-            this.Panel_Groupbox_Data_Site_Stop.Name = "Panel_Groupbox_Data_Site_Stop";
-            this.Panel_Groupbox_Data_Site_Stop.Size = new System.Drawing.Size(298, 34);
-            this.Panel_Groupbox_Data_Site_Stop.TabIndex = 35;
-            this.Panel_Groupbox_Data_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Data_Site_Stop_MouseClick);
             // 
             // label9
             // 
@@ -727,20 +727,20 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.textBox6);
-            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.export_site_start);
+            this.panel1.Controls.Add(this.export_project_name);
             this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.export_site_stop);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.export_emp_name);
             this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.export_date);
+            this.panel1.Controls.Add(this.export_emp_no);
+            this.panel1.Controls.Add(this.export_time_out);
             this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.export_time_in);
             this.panel1.Controls.Add(this.label26);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.label28);
@@ -762,23 +762,23 @@
             this.label23.TabIndex = 43;
             this.label23.Text = "DOTNET @2018";
             // 
-            // textBox6
+            // export_site_start
             // 
-            this.textBox6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(336, 62);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(48, 26);
-            this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "F2";
+            this.export_site_start.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_site_start.Location = new System.Drawing.Point(336, 62);
+            this.export_site_start.Name = "export_site_start";
+            this.export_site_start.Size = new System.Drawing.Size(48, 26);
+            this.export_site_start.TabIndex = 5;
+            this.export_site_start.Text = "F2";
             // 
-            // textBox7
+            // export_project_name
             // 
-            this.textBox7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(336, 132);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(48, 26);
-            this.textBox7.TabIndex = 7;
-            this.textBox7.Text = "H2";
+            this.export_project_name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_project_name.Location = new System.Drawing.Point(336, 132);
+            this.export_project_name.Name = "export_project_name";
+            this.export_project_name.Size = new System.Drawing.Size(48, 26);
+            this.export_project_name.TabIndex = 7;
+            this.export_project_name.Text = "H2";
             // 
             // label20
             // 
@@ -790,14 +790,14 @@
             this.label20.TabIndex = 42;
             this.label20.Text = "Project Name";
             // 
-            // textBox8
+            // export_site_stop
             // 
-            this.textBox8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(336, 97);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(48, 26);
-            this.textBox8.TabIndex = 6;
-            this.textBox8.Text = "G2";
+            this.export_site_stop.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_site_stop.Location = new System.Drawing.Point(336, 97);
+            this.export_site_stop.Name = "export_site_stop";
+            this.export_site_stop.Size = new System.Drawing.Size(48, 26);
+            this.export_site_stop.TabIndex = 6;
+            this.export_site_stop.Text = "G2";
             // 
             // label21
             // 
@@ -831,14 +831,14 @@
             this.label19.TabIndex = 36;
             this.label19.Text = "_________________________________________________________";
             // 
-            // textBox1
+            // export_emp_name
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(165, 97);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 26);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "B2";
+            this.export_emp_name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_emp_name.Location = new System.Drawing.Point(165, 97);
+            this.export_emp_name.Name = "export_emp_name";
+            this.export_emp_name.Size = new System.Drawing.Size(48, 26);
+            this.export_emp_name.TabIndex = 1;
+            this.export_emp_name.Text = "B2";
             // 
             // label24
             // 
@@ -850,32 +850,32 @@
             this.label24.TabIndex = 20;
             this.label24.Text = "Cell Mapping for Export";
             // 
-            // textBox2
+            // export_date
             // 
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(165, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(48, 26);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "C2";
+            this.export_date.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_date.Location = new System.Drawing.Point(165, 132);
+            this.export_date.Name = "export_date";
+            this.export_date.Size = new System.Drawing.Size(48, 26);
+            this.export_date.TabIndex = 2;
+            this.export_date.Text = "C2";
             // 
-            // textBox3
+            // export_emp_no
             // 
-            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(165, 62);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 26);
-            this.textBox3.TabIndex = 0;
-            this.textBox3.Text = "A2";
+            this.export_emp_no.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_emp_no.Location = new System.Drawing.Point(165, 62);
+            this.export_emp_no.Name = "export_emp_no";
+            this.export_emp_no.Size = new System.Drawing.Size(48, 26);
+            this.export_emp_no.TabIndex = 0;
+            this.export_emp_no.Text = "A2";
             // 
-            // textBox4
+            // export_time_out
             // 
-            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(165, 202);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(48, 26);
-            this.textBox4.TabIndex = 4;
-            this.textBox4.Text = "E2";
+            this.export_time_out.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_time_out.Location = new System.Drawing.Point(165, 202);
+            this.export_time_out.Name = "export_time_out";
+            this.export_time_out.Size = new System.Drawing.Size(48, 26);
+            this.export_time_out.TabIndex = 4;
+            this.export_time_out.Text = "E2";
             // 
             // label25
             // 
@@ -887,14 +887,14 @@
             this.label25.TabIndex = 28;
             this.label25.Text = "Time Out";
             // 
-            // textBox5
+            // export_time_in
             // 
-            this.textBox5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(165, 167);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(48, 26);
-            this.textBox5.TabIndex = 3;
-            this.textBox5.Text = "D2";
+            this.export_time_in.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_time_in.Location = new System.Drawing.Point(165, 167);
+            this.export_time_in.Name = "export_time_in";
+            this.export_time_in.Size = new System.Drawing.Size(48, 26);
+            this.export_time_in.TabIndex = 3;
+            this.export_time_in.Text = "D2";
             // 
             // label26
             // 
@@ -1027,20 +1027,20 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox export_site_start;
+        private System.Windows.Forms.TextBox export_project_name;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox export_site_stop;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox export_emp_name;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox export_date;
+        private System.Windows.Forms.TextBox export_emp_no;
+        private System.Windows.Forms.TextBox export_time_out;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox export_time_in;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;

@@ -81,7 +81,7 @@ namespace Test_2
                     DataTable tbContainer = new DataTable();
                     string strConn = string.Empty;
                     string sheetName = "";
-                    if (checkSameRow())
+                    if (checkSameRow(tb_Date.Text,tb_Time_In.Text,tb_Time_Out.Text))
                     {
                         tbContainer = LoadExcelFile_specific_colunm(pathName
                                                                 , sheetName
@@ -111,10 +111,10 @@ namespace Test_2
             }
                
         }
-        public bool checkSameRow()
+        public bool checkSameRow(string str1,string str2,string str3)
         {
-            if (getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_In.Text)
-                && getIntFromAddr(tb_Date.Text) == getIntFromAddr(tb_Time_Out.Text))
+            if (getIntFromAddr(str1) == getIntFromAddr(str2)
+                && getIntFromAddr(str1) == getIntFromAddr(str3))
             {
                 return true;
             }
@@ -228,22 +228,22 @@ namespace Test_2
             //----------------------------- get site start time ----------------------------------------
             if (tb_Groupbox_Data_Site_Start.Enabled == true)
             {
-                ProjectName = tb_Groupbox_Data_Site_Start.Text;
+                SiteStartTime = tb_Groupbox_Data_Site_Start.Text;
             }
             else
             {
-                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Start.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Start.Text))]).Value2);
+                SiteStartTime = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Start.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Start.Text))]).Value2);
             }
             //----------------------------- end site start time ----------------------------------------
 
             //----------------------------- get site stop time ----------------------------------------
             if (tb_Groupbox_Data_Site_Stop.Enabled == true)
             {
-                ProjectName = tb_Groupbox_Data_Site_Start.Text;
+                SiteStopTime = tb_Groupbox_Data_Site_Stop.Text;
             }
             else
             {
-                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Stop.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Stop.Text))]).Value2);
+                SiteStopTime = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Stop.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Stop.Text))]).Value2);
             }
             //----------------------------- end site stop time ----------------------------------------
 
@@ -348,36 +348,42 @@ namespace Test_2
                 string WorksheetName = workBook.ActiveSheet.Name;
                 Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[WorksheetName];
 
-
-                for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
+                if (checkSameRow(export_date.Text, export_time_in.Text, export_time_out.Text))
                 {
+                    for (int i = 0; i < Dgv_Show_Preview.Rows.Count; i++) // i = row
+                    {
 
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("A2"))] = lb_Emp_No.Text;
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("B2"))] = lb_Name.Text;
-                    //for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
-                    //{
-                    //    if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
-                    //        workSheet.Cells[i + 2, j + 3] = Dgv_Show_Preview.Rows[i].Cells[j].Value.ToString();
-                    //    else
-                    //        workSheet.Cells[i + 2, j + 3] = "";
-                    //}
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_emp_no.Text))] = lb_Emp_No.Text;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_emp_name.Text))] = lb_Name.Text;
+                        //for (int j = 0; j < Dgv_Show_Preview.Columns.Count; j++) //j = column
+                        //{
+                        //    if (Dgv_Show_Preview.Rows[i].Cells[j].Value != null)
+                        //        workSheet.Cells[i + 2, j + 3] = Dgv_Show_Preview.Rows[i].Cells[j].Value.ToString();
+                        //    else
+                        //        workSheet.Cells[i + 2, j + 3] = "";
+                        //}
 
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))].EntireColumn.NumberFormat = "dd/MM/yyyy";
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("D2"))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("E2"))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("F2"))] = tb_Groupbox_Data_Site_Start.Text;
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("G2"))] = tb_Groupbox_Data_Site_Stop.Text;
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_date.Text))].EntireColumn.NumberFormat = "dd/MM/yyyy";
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_time_in.Text))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_time_out.Text))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_project_name.Text))] = ProjectName;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_date.Text))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_site_start.Text))] = SiteStartTime;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_stop.Text))] = SiteStopTime;
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Error! Check row in Config tab.");
+                }
                 workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
                 workBook.Close();
                 excelApp.Quit();
                 MessageBox.Show("Export Complete.");
             }
-            catch(Exception ex) {
-                Console.WriteLine(ex.StackTrace);
+            catch(Exception ex)
+            {
+                MessageBox.Show("Export Error! Please check input.");
             }
         }
 
