@@ -25,10 +25,19 @@ namespace Test_2
         public Form1()
         {
             InitializeComponent();
+            Default_Data_AND_Cell();
             openFileDialog1 = new OpenFileDialog();
+
         }
 
-        private void Switch_Gb_Project(bool Data,bool Cell)
+        private void Default_Data_AND_Cell()
+        {
+            tb_Groupbox_Cell_Project.Enabled = false;
+            tb_Groupbox_Cell_Site_Start.Enabled = false;
+            tb_Groupbox_Cell_Site_Stop.Enabled = false;
+        }
+
+        private void Switch_Gb_Project(bool Data, bool Cell)
         {
             tb_Groupbox_Data_Project.Enabled = Data;
             tb_Groupbox_Cell_Project.Enabled = Cell;
@@ -44,6 +53,45 @@ namespace Test_2
         {
             tb_Groupbox_Data_Site_Stop.Enabled = Data;
             tb_Groupbox_Cell_Site_Stop.Enabled = Cell;
+        }
+
+        private void All_Clear_Data()
+        {
+            tb_Target_file.Text = "";
+            tb_Template_file.Text = "";
+            tb_Dest_file.Text = "";
+            tb_Groupbox_Data_Project.Text = "";
+            tb_Groupbox_Cell_Project.Text = "";
+            tb_Groupbox_Data_Site_Start.Text = "";
+            tb_Groupbox_Cell_Site_Start.Text = "";
+            tb_Groupbox_Data_Site_Stop.Text = "";
+            tb_Groupbox_Cell_Site_Stop.Text = "";
+            tb_Emp_No.Text = "";
+            tb_Name.Text = "";
+            tb_Date.Text = "";
+            tb_Time_In.Text = "";
+            tb_Time_Out.Text = "";
+        }
+        private bool Check_EmptyValues()
+        {
+            if (string.IsNullOrEmpty(tb_Target_file.Text.Trim())
+                && string.IsNullOrEmpty(tb_Template_file.Text.Trim())
+                && string.IsNullOrEmpty(tb_Dest_file.Text.Trim())
+                && (string.IsNullOrEmpty(tb_Groupbox_Data_Project.Text.Trim()) || !tb_Groupbox_Data_Project.Enabled)
+                && (string.IsNullOrEmpty(tb_Groupbox_Cell_Project.Text.Trim()) || !tb_Groupbox_Cell_Project.Enabled)
+                && (string.IsNullOrEmpty(tb_Groupbox_Data_Site_Start.Text.Trim()) || !tb_Groupbox_Data_Site_Start.Enabled)
+                && (string.IsNullOrEmpty(tb_Groupbox_Cell_Site_Start.Text.Trim()) || !tb_Groupbox_Cell_Site_Start.Enabled)
+                && (string.IsNullOrEmpty(tb_Groupbox_Data_Site_Stop.Text.Trim()) || !tb_Groupbox_Data_Site_Stop.Enabled)
+                && (string.IsNullOrEmpty(tb_Groupbox_Cell_Site_Stop.Text.Trim()) || !tb_Groupbox_Cell_Site_Stop.Enabled)
+                && string.IsNullOrEmpty(tb_Emp_No.Text.Trim())
+                && string.IsNullOrEmpty(tb_Name.Text.Trim()) 
+                && string.IsNullOrEmpty(tb_Date.Text.Trim())
+                && string.IsNullOrEmpty(tb_Time_In.Text.Trim())
+                && string.IsNullOrEmpty(tb_Time_Out.Text.Trim()))
+            {
+                return true;
+            }
+            return false;
         }
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
@@ -423,31 +471,47 @@ namespace Test_2
         private void Panel_Groupbox_Data_Project_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Project(true, false);
+            tb_Groupbox_Data_Project.Focus();
         }
 
         private void Panel_Groupbox_Cell_Project_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Project(false, true);
+            tb_Groupbox_Cell_Project.Focus();
         }
 
         private void Panel_Groupbox_Data_Site_Start_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Site_Start(true, false);
+            tb_Groupbox_Data_Site_Start.Focus();
         }
 
         private void Panel_Groupbox_Cell_Site_Start_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Site_Start(false, true);
+            tb_Groupbox_Cell_Site_Start.Focus();
         }
 
         private void Panel_Groupbox_Data_Site_Stop_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Site_Stop(true, false);
+            tb_Groupbox_Data_Site_Stop.Focus();
         }
 
         private void Panel_Groupbox_Cell_Site_Stop_MouseClick(object sender, MouseEventArgs e)
         {
             Switch_Gb_Site_Stop(false, true);
+            tb_Groupbox_Cell_Site_Stop.Focus();
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            if (Check_EmptyValues())
+            {
+                Application.Exit();
+            }
+            All_Clear_Data();
+            
         }
     }// end form1
 }

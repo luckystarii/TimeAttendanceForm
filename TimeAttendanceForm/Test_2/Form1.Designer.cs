@@ -311,7 +311,31 @@
             this.tb_Groupbox_Cell_Site_Start.Name = "tb_Groupbox_Cell_Site_Start";
             this.tb_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(48, 26);
             this.tb_Groupbox_Cell_Site_Start.TabIndex = 1;
-            this.tb_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
+            this.tb_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Project
+            // 
+            this.Panel_Groupbox_Cell_Project.Location = new System.Drawing.Point(-1, 18);
+            this.Panel_Groupbox_Cell_Project.Name = "Panel_Groupbox_Cell_Project";
+            this.Panel_Groupbox_Cell_Project.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Project.TabIndex = 32;
+            this.Panel_Groupbox_Cell_Project.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Project_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Site_Start
+            // 
+            this.Panel_Groupbox_Cell_Site_Start.Location = new System.Drawing.Point(-1, 53);
+            this.Panel_Groupbox_Cell_Site_Start.Name = "Panel_Groupbox_Cell_Site_Start";
+            this.Panel_Groupbox_Cell_Site_Start.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Start.TabIndex = 33;
+            this.Panel_Groupbox_Cell_Site_Start.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Start_MouseClick);
+            // 
+            // Panel_Groupbox_Cell_Site_Stop
+            // 
+            this.Panel_Groupbox_Cell_Site_Stop.Location = new System.Drawing.Point(-2, 91);
+            this.Panel_Groupbox_Cell_Site_Stop.Name = "Panel_Groupbox_Cell_Site_Stop";
+            this.Panel_Groupbox_Cell_Site_Stop.Size = new System.Drawing.Size(75, 33);
+            this.Panel_Groupbox_Cell_Site_Stop.TabIndex = 34;
+            this.Panel_Groupbox_Cell_Site_Stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Groupbox_Cell_Site_Stop_MouseClick);
             // 
             // Panel_Groupbox_Cell_Project
             // 
@@ -587,6 +611,7 @@
             this.btn_Cancel.TabIndex = 8;
             this.btn_Cancel.Text = "Cancel";
             this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // btn_Preview
             // 
@@ -703,7 +728,6 @@
             this.tabPage1.Controls.Add(this.panel_Cell_Mapping);
             this.tabPage1.Controls.Add(this.panel_Project_Detail);
             this.tabPage1.Controls.Add(this.panel_Import_Export);
-            this.tabPage1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabPage1.Location = new System.Drawing.Point(4, 32);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -715,7 +739,6 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabPage2.Location = new System.Drawing.Point(4, 32);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
