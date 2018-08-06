@@ -88,6 +88,7 @@ namespace Test_2
                                                                 , tb_Emp_No.Text
                                                                 , tb_Name.Text);
                         Dgv_Show_Preview.DataSource = tbContainer;
+                        Dgv_Show_Preview.Columns[3].Visible = false; // hide raw date
                     }
                     else
                     {
@@ -212,7 +213,9 @@ namespace Test_2
             dt.Columns.Add("Date");
             dt.Columns.Add("Time IN");
             dt.Columns.Add("Time Out");
-                   
+            dt.Columns.Add("Date Raw");
+
+
             for (int i = 0; i < dayMonth; i++)
             {
                 try
@@ -231,12 +234,14 @@ namespace Test_2
                         date = double.Parse(sDate);
                     
                         Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                        Row[3] = date;
                     }
                     catch
                     {
                         sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
-                        
+
                         Row[0] = sDate;
+                        Row[3] = sDate;
                     }
                     try
                     {
@@ -259,7 +264,7 @@ namespace Test_2
 
                     if (!string.IsNullOrWhiteSpace(Row[0].ToString()))
                     {
-                        dt.Rows.Add(Row); ;
+                        dt.Rows.Add(Row); 
                     }
 
 
@@ -317,7 +322,9 @@ namespace Test_2
                     //    else
                     //        workSheet.Cells[i + 2, j + 3] = "";
                     //}
-                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))] = Dgv_Show_Preview.Rows[i].Cells[0].Value.ToString();
+
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))].EntireColumn.NumberFormat = "dd/MM/yyyy";
+                    workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("C2"))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
                     workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("D2"))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
                     workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("E2"))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
                     workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("F2"))] = tb_Groupbox_Data_Site_Start.Text;
