@@ -242,9 +242,30 @@ namespace Test_2
             {
                 ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Project.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Project.Text))]).Value2);
             }
-            MessageBox.Show(ProjectName);
             //----------------------------- end project Name ----------------------------------------
 
+
+            //----------------------------- get site start time ----------------------------------------
+            if (tb_Groupbox_Data_Site_Start.Enabled == true)
+            {
+                ProjectName = tb_Groupbox_Data_Site_Start.Text;
+            }
+            else
+            {
+                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Start.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Start.Text))]).Value2);
+            }
+            //----------------------------- end site start time ----------------------------------------
+
+            //----------------------------- get site stop time ----------------------------------------
+            if (tb_Groupbox_Data_Site_Stop.Enabled == true)
+            {
+                ProjectName = tb_Groupbox_Data_Site_Start.Text;
+            }
+            else
+            {
+                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Stop.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Stop.Text))]).Value2);
+            }
+            //----------------------------- end site stop time ----------------------------------------
 
             ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
            
