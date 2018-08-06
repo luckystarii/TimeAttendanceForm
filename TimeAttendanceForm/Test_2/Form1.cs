@@ -18,6 +18,10 @@ namespace Test_2
     {
         public static DateTime fileDatetime;
 
+        public static String ProjectName;
+        public static String SiteStartTime;
+        public static String SiteStopTime;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,20 +30,20 @@ namespace Test_2
 
         private void Switch_Gb_Project(bool Data,bool Cell)
         {
-            Panel_Groupbox_Data_Project.Enabled = Data;
-            Panel_Groupbox_Cell_Project.Enabled = Cell;
+            tb_Groupbox_Data_Project.Enabled = Data;
+            tb_Groupbox_Cell_Project.Enabled = Cell;
         }
 
         private void Switch_Gb_Site_Start(bool Data, bool Cell)
         {
-            Panel_Groupbox_Data_Site_Start.Enabled = Data;
-            Panel_Groupbox_Cell_Site_Start.Enabled = Cell;
+            tb_Groupbox_Data_Site_Start.Enabled = Data;
+            tb_Groupbox_Cell_Site_Start.Enabled = Cell;
         }
 
         private void Switch_Gb_Site_Stop(bool Data, bool Cell)
         {
-            Panel_Groupbox_Data_Site_Stop.Enabled = Data;
-            Panel_Groupbox_Cell_Site_Stop.Enabled = Cell;
+            tb_Groupbox_Data_Site_Stop.Enabled = Data;
+            tb_Groupbox_Cell_Site_Stop.Enabled = Cell;
         }
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
@@ -209,6 +213,19 @@ namespace Test_2
             lb_Name.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(colEmpName), GetColumnNumber(getStringFromAddr(colEmpName))]).Value2);
             //----------------------------- end emp name --------------------------------------------
 
+            //----------------------------- get project Name ----------------------------------------
+            if (tb_Groupbox_Data_Project.Enabled == true)
+            {
+                ProjectName = tb_Groupbox_Data_Project.Text;
+            }
+            else
+            {
+                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Project.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Project.Text))]).Value2);
+            }
+            MessageBox.Show(ProjectName);
+            //----------------------------- end project Name ----------------------------------------
+
+
             ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
            
             dt.Columns.Add("Date");
@@ -333,10 +350,10 @@ namespace Test_2
                     workSheet.Cells[i + 2, GetColumnNumber(getStringFromAddr("H2"))] = tb_Groupbox_Data_Project.Text;
                 }
 
-                workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
+                workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
                 workBook.Close();
                 excelApp.Quit();
-                Console.WriteLine(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
+                MessageBox.Show("Export Complete.");
             }
             catch(Exception ex) {
                 Console.WriteLine(ex.StackTrace);
