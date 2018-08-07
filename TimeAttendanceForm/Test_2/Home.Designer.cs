@@ -123,9 +123,9 @@
             // 
             this.panel_Import_Export.Controls.Add(this.btn_Browse_Dest_file);
             this.panel_Import_Export.Controls.Add(this.btn_Browse_Target_file);
-            this.panel_Import_Export.Controls.Add(this.tb_Dest_file);
             this.panel_Import_Export.Controls.Add(this.tb_Target_file);
             this.panel_Import_Export.Controls.Add(this.label5);
+            this.panel_Import_Export.Controls.Add(this.tb_Dest_file);
             this.panel_Import_Export.Controls.Add(this.label4);
             this.panel_Import_Export.Controls.Add(this.label3);
             this.panel_Import_Export.Controls.Add(this.label1);
@@ -140,7 +140,7 @@
             // btn_Browse_Dest_file
             // 
             this.btn_Browse_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Browse_Dest_file.Location = new System.Drawing.Point(440, 73);
+            this.btn_Browse_Dest_file.Location = new System.Drawing.Point(440, 109);
             this.btn_Browse_Dest_file.Name = "btn_Browse_Dest_file";
             this.btn_Browse_Dest_file.Size = new System.Drawing.Size(34, 29);
             this.btn_Browse_Dest_file.TabIndex = 3;
@@ -163,7 +163,7 @@
             // 
             this.tb_Dest_file.BackColor = System.Drawing.SystemColors.Window;
             this.tb_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Dest_file.Location = new System.Drawing.Point(94, 75);
+            this.tb_Dest_file.Location = new System.Drawing.Point(94, 111);
             this.tb_Dest_file.Name = "tb_Dest_file";
             this.tb_Dest_file.ReadOnly = true;
             this.tb_Dest_file.Size = new System.Drawing.Size(340, 26);
@@ -225,7 +225,7 @@
             // 
             this.tb_Template_file.BackColor = System.Drawing.SystemColors.Window;
             this.tb_Template_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Template_file.Location = new System.Drawing.Point(94, 111);
+            this.tb_Template_file.Location = new System.Drawing.Point(94, 78);
             this.tb_Template_file.Name = "tb_Template_file";
             this.tb_Template_file.ReadOnly = true;
             this.tb_Template_file.Size = new System.Drawing.Size(340, 26);
@@ -235,7 +235,7 @@
             // btn_Browse_Template_file
             // 
             this.btn_Browse_Template_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Browse_Template_file.Location = new System.Drawing.Point(440, 109);
+            this.btn_Browse_Template_file.Location = new System.Drawing.Point(440, 76);
             this.btn_Browse_Template_file.Name = "btn_Browse_Template_file";
             this.btn_Browse_Template_file.Size = new System.Drawing.Size(34, 29);
             this.btn_Browse_Template_file.TabIndex = 5;

@@ -109,7 +109,7 @@ namespace TAIE
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.StackTrace);
+                    //Console.WriteLine(ex.StackTrace);
                 }
             }
         }
@@ -125,37 +125,39 @@ namespace TAIE
                     DataTable tbContainer = new DataTable();
                     string strConn = string.Empty;
                     string sheetName = "";
-                    if (checkSameRow(tb_Date.Text,tb_Time_In.Text,tb_Time_Out.Text))
+                    if (checkSameRow(tb_Date.Text,tb_Time_In.Text,tb_Time_Out.Text)) // check row of data are the same 
                     {
-                        tbContainer = LoadExcelFile_specific_colunm(pathName
-                                                                , sheetName
-                                                                , (getIntFromAddr(tb_Date.Text) - 1)
-                                                                , getIntFromAddr(tb_Date.Text)
-                                                                , GetColumnNumber(getStringFromAddr(tb_Date.Text))
-                                                                , GetColumnNumber(getStringFromAddr(tb_Time_In.Text))
-                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text))
-                                                                , tb_Emp_No.Text
-                                                                , tb_Name.Text);
-                        Dgv_Show_Preview.DataSource = tbContainer;
+                        tbContainer = LoadExcelFile_specific_colunm(pathName // send path 
+                                                                , sheetName // sheet name : default is "" (empty string for first/active sheet)
+                                                                , getIntFromAddr(tb_Date.Text) // send first row of data EX : '9' from 'B9'
+                                                                , GetColumnNumber(getStringFromAddr(tb_Date.Text)) // send number of column that is date column EX : '2' from 'B9'
+                                                                , GetColumnNumber(getStringFromAddr(tb_Time_In.Text)) // send number of column that is time in column EX : '2' from 'B9'
+                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)) // send number of column that is time out column EX : '2' from 'B9'
+                                                                , tb_Emp_No.Text // send column that is Emp_no column     EX : 'D2'
+                                                                , tb_Name.Text); // send column that is Emp name column   EX : 'I2'
+                        Dgv_Show_Preview.DataSource = tbContainer; // set data to gridview 
                         Dgv_Show_Preview.Columns[3].Visible = false; // hide raw date
                     }
                     else
                     {
+                        Dgv_Show_Preview.DataSource = null; // clear data when data not same row 
                         MessageBox.Show("Error! Check row Date, Time in, Time out");
                     }
                 }
                 else
                 {
+                    Dgv_Show_Preview.DataSource = null; // clear data when not have file to import
                     MessageBox.Show("Error! Please select file to import.");
                 }
             }
             catch
             {
+                Dgv_Show_Preview.DataSource = null; // clear data when something error this for export
                 MessageBox.Show("Please check inputbox.");
             }
                
         }
-        public bool checkSameRow(string str1,string str2,string str3)
+        public bool checkSameRow(string str1,string str2,string str3) // check 3 data have same row EX : str1 = "D2", str2 = "B2", str3 = "C2"
         {
             if (getIntFromAddr(str1) == getIntFromAddr(str2)
                 && getIntFromAddr(str1) == getIntFromAddr(str3))
@@ -167,28 +169,21 @@ namespace TAIE
                 return false;
             }
         }
-        public string getStringFromAddr(string str)
+        public string getStringFromAddr(string str) // get string from data EX : "B3" ->>>> "B" 
         {
             var numAlpha = new Regex("(?<Alpha>[a-zA-Z]*)(?<Numeric>[0-9]*)");
             var match = numAlpha.Match(str);
 
             return match.Groups["Alpha"].Value;
         }
-        public int getIntFromAddr(string str)
+        public int getIntFromAddr(string str) // get numberic from data EX : "B3" ->>>>>> "3"(int)
         {
             var numAlpha = new Regex("(?<Alpha>[a-zA-Z]*)(?<Numeric>[0-9]*)");
             var match = numAlpha.Match(str);
 
             return Int32.Parse(match.Groups["Numeric"].Value);
         }
-        public string getIntOnly(string str)
-        {
-            Regex regex = new Regex(@"^\d$");
-            var match = regex.Match(str);
-
-            return match.Groups[0].Value;
-        }
-        public static int GetColumnNumber(string name)
+        public static int GetColumnNumber(string name) // get numberic from string EX : "2" ->>>> "B"
         {
             int number = 0;
             int pow = 1;
@@ -200,7 +195,7 @@ namespace TAIE
 
             return number;
         }
-        public string GetExcelColumnName(int columnNumber)
+        public string GetExcelColumnName(int columnNumber) // get string from numberic EX : "3" ->>>>> "c"
         {
             int dividend = columnNumber;
             string columnName = String.Empty;
@@ -215,8 +210,26 @@ namespace TAIE
 
             return columnName;
         }
-        
-        public DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int headerRowNumber, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut,string colEmpNo,string colEmpName)
+
+
+        /*
+         * get excel data that user insert 
+         * input        :   (string) fileName            <--- fullpath
+         *                  (string) workSheetName       <--- worksheet can use "" (Emptry string) for worksheet that active or first 
+         *                  (int)   firstDataRowNumber  <--- number of first row in excel that user want to import
+         *                  (int)   colDateTime         <--- number of column that is date data 
+         *                  (int)   colTimeIn           <--- number of column that is time in data 
+         *                  (int)   colTimeOut          <--- number of column that is time out data
+         *                  (int)   colEmpNo            <--- number of column that is Employee Number data 
+         *                  (int)   colEmpName          <--- number of column that is Employee Name data
+         * output type  :   Datatable
+         * output       :   data of excel that import 
+         *                  col[0] : date(string)
+         *                  col[1] : time in
+         *                  col[2] : time out
+         *                  col[3] : raw date(int)
+         */
+        public DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut,string colEmpNo,string colEmpName)
         {
 
             DataTable dt = new DataTable();
@@ -229,9 +242,9 @@ namespace TAIE
 
             string WorksheetName = worksheetName;
 
-            if (string.IsNullOrWhiteSpace(worksheetName))
+            if (string.IsNullOrWhiteSpace(worksheetName)) // check worksheetname is empty?
             {
-                WorksheetName = ExcelWorkbook.ActiveSheet.Name;
+                WorksheetName = ExcelWorkbook.ActiveSheet.Name; // set activeworksheet to worksheetname
 
             }
 
@@ -354,7 +367,7 @@ namespace TAIE
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.StackTrace);
+                    dt.Reset();
 
                 }
 
@@ -433,10 +446,9 @@ namespace TAIE
 
         private void btn_Export_Click(object sender, EventArgs e)
         {
-            if (Dgv_Show_Preview.Rows.Count == 0)
-            {
+            
                 btn_Preview_Click(null, e);
-            }
+            
             if (Dgv_Show_Preview.Rows.Count != 0)
             {
                 Export_Excell();
