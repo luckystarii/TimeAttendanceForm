@@ -791,7 +791,7 @@ namespace TAIE
             else
             {
                 lbTime.Text = "Time In";
-                lbFlag.Text = "Time In";
+                lbFlag.Text = "Time Out";
             }
         }
     }// end form1
