@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -80,7 +81,7 @@ namespace TAIE
                 && (string.IsNullOrEmpty(tb_Groupbox_Data_Site_Stop.Text.Trim()) || !tb_Groupbox_Data_Site_Stop.Enabled)
                 && (string.IsNullOrEmpty(tb_Groupbox_Cell_Site_Stop.Text.Trim()) || !tb_Groupbox_Cell_Site_Stop.Enabled)
                 && string.IsNullOrEmpty(tb_Emp_No.Text.Trim())
-                && string.IsNullOrEmpty(tb_Name.Text.Trim()) 
+                && string.IsNullOrEmpty(tb_Name.Text.Trim())
                 && string.IsNullOrEmpty(tb_Date.Text.Trim())
                 && string.IsNullOrEmpty(tb_Time_In.Text.Trim())
                 && string.IsNullOrEmpty(tb_Time_Out.Text.Trim()))
@@ -92,7 +93,7 @@ namespace TAIE
 
         private void btn_Browse_Target_file_Click(object sender, EventArgs e)
         {
-            
+
             openFileDialog1.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
             openFileDialog1.FilterIndex = 3;
 
@@ -125,17 +126,57 @@ namespace TAIE
                     DataTable tbContainer = new DataTable();
                     string strConn = string.Empty;
                     string sheetName = "";
-                    if (checkSameRow(tb_Date.Text,tb_Time_In.Text,tb_Time_Out.Text)) // check row of data are the same 
+                    if (checkSameRow(tb_Date.Text, tb_Time_In.Text, tb_Time_Out.Text)) // check row of data are the same 
                     {
-                        tbContainer = LoadExcelFile_specific_colunm(pathName // send path 
-                                                                , sheetName // sheet name : default is "" (empty string for first/active sheet)
-                                                                , getIntFromAddr(tb_Date.Text) // send first row of data EX : '9' from 'B9'
-                                                                , GetColumnNumber(getStringFromAddr(tb_Date.Text)) // send number of column that is date column EX : '2' from 'B9'
-                                                                , GetColumnNumber(getStringFromAddr(tb_Time_In.Text)) // send number of column that is time in column EX : '2' from 'B9'
-                                                                , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)) // send number of column that is time out column EX : '2' from 'B9'
-                                                                , tb_Emp_No.Text // send column that is Emp_no column     EX : 'D2'
-                                                                , tb_Name.Text); // send column that is Emp name column   EX : 'I2'
-                        Dgv_Show_Preview.DataSource = tbContainer; // set data to gridview 
+                        if (RdbnNormal.Checked)
+                        {
+                            tbContainer = LoadExcelFile_specific_colunm(pathName // send path 
+                                                                    , sheetName // sheet name : default is "" (empty string for first/active sheet)
+                                                                    , getIntFromAddr(tb_Date.Text) // send first row of data EX : '9' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Date.Text)) // send number of column that is date column EX : '2' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Time_In.Text)) // send number of column that is time in column EX : '2' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)) // send number of column that is time out column EX : '2' from 'B9'
+                                                                    , tb_Emp_No.Text // send column that is Emp_no column     EX : 'D2'
+                                                                    , tb_Name.Text); // send column that is Emp name column   EX : 'I2'
+                        }
+                        else
+                        {
+                            tbContainer = LoadExcelFile_special(pathName // send path 
+                                                                    , sheetName // sheet name : default is "" (empty string for first/active sheet)
+                                                                    , getIntFromAddr(tb_Date.Text) // send first row of data EX : '9' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Date.Text)) // send number of column that is date column EX : '2' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Time_In.Text)) // send number of column that is time in column EX : '2' from 'B9'
+                                                                    , GetColumnNumber(getStringFromAddr(tb_Time_Out.Text)) // send number of column that is time out column EX : '2' from 'B9'
+                                                                    , tb_Emp_No.Text // send column that is Emp_no column     EX : 'D2'
+                                                                    , tb_Name.Text); // send column that is Emp name column   EX : 'I2'
+                        }
+                        DataTable dtFinal = tbContainer.Clone();
+
+                        for (int i = 0; i < tbContainer.Rows.Count; i++)
+                        {
+                            bool isDupe = false;
+                            for (int j = 0; j < dtFinal.Rows.Count; j++)
+                            {
+                                if (tbContainer.Rows[i][0].ToString() == dtFinal.Rows[j][0].ToString()
+                                    && tbContainer.Rows[i][3].ToString() == dtFinal.Rows[j][3].ToString())
+                                {
+                                    if (dtFinal.Rows[j][2].ToString() == "")
+                                        dtFinal.Rows[j][2] = tbContainer.Rows[i][2].ToString();
+                                    if (dtFinal.Rows[j][3].ToString() == "")
+                                        dtFinal.Rows[j][3] = tbContainer.Rows[i][2].ToString();
+                                    isDupe = true;
+                                    break;
+                                }
+                            }
+
+                            if (!isDupe)
+                            {
+                                dtFinal.ImportRow(tbContainer.Rows[i]);
+                            }
+                        }
+
+                        Dgv_Show_Preview.DataSource = dtFinal; // set data to gridview 
+                        Dgv_Show_Preview.Sort(this.Dgv_Show_Preview.Columns["Date"], ListSortDirection.Ascending);
                         Dgv_Show_Preview.Columns[3].Visible = false; // hide raw date
                     }
                     else
@@ -155,9 +196,9 @@ namespace TAIE
                 Dgv_Show_Preview.DataSource = null; // clear data when something error this for export
                 MessageBox.Show("Please check inputbox.");
             }
-               
+
         }
-        public bool checkSameRow(string str1,string str2,string str3) // check 3 data have same row EX : str1 = "D2", str2 = "B2", str3 = "C2"
+        public bool checkSameRow(string str1, string str2, string str3) // check 3 data have same row EX : str1 = "D2", str2 = "B2", str3 = "C2"
         {
             if (getIntFromAddr(str1) == getIntFromAddr(str2)
                 && getIntFromAddr(str1) == getIntFromAddr(str3))
@@ -229,7 +270,7 @@ namespace TAIE
          *                  col[2] : time out
          *                  col[3] : raw date(int)
          */
-        public DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut,string colEmpNo,string colEmpName)
+        public DataTable LoadExcelFile_specific_colunm(string fileName, string worksheetName, int firstDataRowNumber, int colDateTime, int colTimeIn, int colTimeOut, string colEmpNo, string colEmpName)
         {
 
             DataTable dt = new DataTable();
@@ -257,13 +298,13 @@ namespace TAIE
             string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
             //Console.WriteLine(eeDate);
             double edate = double.Parse(eeDate);
-            fileDatetime = DateTime.FromOADate(edate); 
+            fileDatetime = DateTime.FromOADate(edate);
 
             int dayMonth = System.DateTime.DaysInMonth(fileDatetime.Year, fileDatetime.Month);
 
             //----------------------------- end date in month--------------------------------------
             //----------------------------- get emp no --------------------------------------------
-            lb_Emp_No.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[ getIntFromAddr(colEmpNo), GetColumnNumber( getStringFromAddr(colEmpNo))]).Value2);
+            lb_Emp_No.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(colEmpNo), GetColumnNumber(getStringFromAddr(colEmpNo))]).Value2);
             lb_Emp_No.Text = Regex.Match(lb_Emp_No.Text, @"\d+").Value;
             //----------------------------- end emp no --------------------------------------------
             //----------------------------- get emp name --------------------------------------------
@@ -305,7 +346,7 @@ namespace TAIE
             //----------------------------- end site stop time ----------------------------------------
 
             ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
-           
+
             dt.Columns.Add("Date");
             dt.Columns.Add("Time IN");
             dt.Columns.Add("Time Out");
@@ -316,7 +357,7 @@ namespace TAIE
             {
                 try
                 {
-                 
+
 
                     DataRow Row = dt.NewRow();
 
@@ -328,16 +369,13 @@ namespace TAIE
                         sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
 
                         date = double.Parse(sDate);
-                    
+
                         Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
                         Row[3] = date;
                     }
                     catch
                     {
-                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
 
-                        Row[0] = sDate;
-                        Row[3] = sDate;
                     }
                     try
                     {
@@ -360,7 +398,7 @@ namespace TAIE
 
                     if (!string.IsNullOrWhiteSpace(Row[0].ToString()))
                     {
-                        dt.Rows.Add(Row); 
+                        dt.Rows.Add(Row);
                     }
 
 
@@ -420,12 +458,12 @@ namespace TAIE
                         //        workSheet.Cells[i + 2, j + 3] = "";
                         //}
 
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_date.Text))].EntireColumn.NumberFormat = "dd/MM/yyyy";
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_time_in.Text))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_time_out.Text))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_project_name.Text))] = ProjectName;
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_date.Text))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text)+i, GetColumnNumber(getStringFromAddr(export_site_start.Text))] = SiteStartTime;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_date.Text))].EntireColumn.NumberFormat = "dd/MM/yyyy";
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_time_in.Text))] = Dgv_Show_Preview.Rows[i].Cells[1].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_time_out.Text))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_project_name.Text))] = ProjectName;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_date.Text))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_start.Text))] = SiteStartTime;
                         workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_stop.Text))] = SiteStopTime;
                     }
                 }
@@ -436,9 +474,9 @@ namespace TAIE
                 workBook.SaveAs(tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");  // NOTE: You can use 'Save()' or 'SaveAs()'
                 workBook.Close();
                 excelApp.Quit();
-                MessageBox.Show("Export Complete. \n File : "+ tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
+                MessageBox.Show("Export Complete. \n File : " + tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Export Error! Please check Project Detail.");
             }
@@ -446,9 +484,9 @@ namespace TAIE
 
         private void btn_Export_Click(object sender, EventArgs e)
         {
-            
-                btn_Preview_Click(null, e);
-            
+
+            btn_Preview_Click(null, e);
+
             if (Dgv_Show_Preview.Rows.Count != 0)
             {
                 Export_Excell();
@@ -457,7 +495,7 @@ namespace TAIE
 
         private void btn_Browse_Template_file_Click(object sender, EventArgs e)
         {
-            
+
             openFileDialog2.Filter = "XML Files (*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb) |*.xml; *.xls; *.xlsx; *.xlsm; *.xlsb";//open file format define Excel Files(.xls)|*.xls| Excel Files(.xlsx)|*.xlsx| 
             openFileDialog2.FilterIndex = 3;
 
@@ -522,7 +560,7 @@ namespace TAIE
                 Application.Exit();
             }
             All_Clear_Data();
-            
+
         }
 
         private void RdbSpecial_MouseHover(object sender, EventArgs e)
@@ -543,6 +581,204 @@ namespace TAIE
         private void RdbnNormal_MouseLeave(object sender, EventArgs e)
         {
             ImFromNormal.Visible = false;
+        }
+
+
+        /*
+         * get excel data that user insert 
+         * input        :   (string) fileName            <--- fullpath
+         *                  (string) workSheetName       <--- worksheet can use "" (Emptry string) for worksheet that active or first 
+         *                  (int)   firstDataRowNumber  <--- number of first row in excel that user want to import
+         *                  (int)   colDateTime         <--- number of column that is date data 
+         *                  (int)   colTimeIn           <--- number of column that is time in data 
+         *                  (int)   colTimeOut          <--- number of column that is time out data
+         *                  (int)   colEmpNo            <--- number of column that is Employee Number data 
+         *                  (int)   colEmpName          <--- number of column that is Employee Name data
+         * output type  :   Datatable
+         * output       :   data of excel that import 
+         *                  col[0] : date(string)
+         *                  col[1] : time in
+         *                  col[2] : time out
+         *                  col[3] : raw date(int)
+         */
+        public DataTable LoadExcelFile_special(string fileName, string worksheetName, int firstDataRowNumber, int colDateTime, int colTime, int colTimeFlag, string colEmpNo, string colEmpName)
+        {
+            DataTable dt = new DataTable();
+
+            Microsoft.Office.Interop.Excel.Application ExcelApplication = new Microsoft.Office.Interop.Excel.Application();
+
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkbook = ExcelApplication.Workbooks.Open(fileName, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorksheet = null;
+
+            string WorksheetName = worksheetName;
+
+            if (string.IsNullOrWhiteSpace(worksheetName)) // check worksheetname is empty?
+            {
+                WorksheetName = ExcelWorkbook.ActiveSheet.Name; // set activeworksheet to worksheetname
+
+            }
+
+            ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
+
+            dt.TableName = WorksheetName;
+
+            Dictionary<string, int> Columns = new Dictionary<string, int>();
+            //----------------------------- get date in month--------------------------------------
+            string eeDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[firstDataRowNumber, colDateTime]).Value2);
+            //Console.WriteLine(eeDate);
+            double edate = double.Parse(eeDate);
+            fileDatetime = DateTime.FromOADate(edate);
+
+            int dayMonth = System.DateTime.DaysInMonth(fileDatetime.Year, fileDatetime.Month);
+
+            //----------------------------- end date in month--------------------------------------
+            //----------------------------- get emp no --------------------------------------------
+            lb_Emp_No.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(colEmpNo), GetColumnNumber(getStringFromAddr(colEmpNo))]).Value2);
+            lb_Emp_No.Text = Regex.Match(lb_Emp_No.Text, @"\d+").Value;
+            //----------------------------- end emp no --------------------------------------------
+            //----------------------------- get emp name --------------------------------------------
+            lb_Name.Text = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(colEmpName), GetColumnNumber(getStringFromAddr(colEmpName))]).Value2);
+            //----------------------------- end emp name --------------------------------------------
+
+            //----------------------------- get project Name ----------------------------------------
+            if (tb_Groupbox_Data_Project.Enabled == true)
+            {
+                ProjectName = tb_Groupbox_Data_Project.Text;
+            }
+            else
+            {
+                ProjectName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Project.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Project.Text))]).Value2);
+            }
+            //----------------------------- end project Name ----------------------------------------
+
+
+            //----------------------------- get site start time ----------------------------------------
+            if (tb_Groupbox_Data_Site_Start.Enabled == true)
+            {
+                SiteStartTime = tb_Groupbox_Data_Site_Start.Text;
+            }
+            else
+            {
+                SiteStartTime = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Start.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Start.Text))]).Value2);
+            }
+            //----------------------------- end site start time ----------------------------------------
+
+            //----------------------------- get site stop time ----------------------------------------
+            if (tb_Groupbox_Data_Site_Stop.Enabled == true)
+            {
+                SiteStopTime = tb_Groupbox_Data_Site_Stop.Text;
+            }
+            else
+            {
+                SiteStopTime = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[getIntFromAddr(tb_Groupbox_Cell_Site_Stop.Text), GetColumnNumber(getStringFromAddr(tb_Groupbox_Cell_Site_Stop.Text))]).Value2);
+            }
+            //----------------------------- end site stop time ----------------------------------------
+
+            ExcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkbook.Worksheets[WorksheetName];
+
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Time IN");
+            dt.Columns.Add("Time Out");
+            dt.Columns.Add("Date Raw");
+            int last_row = 0;
+            last_row = ExcelWorksheet.Cells.Find("Total", System.Reflection.Missing.Value,
+                             System.Reflection.Missing.Value, System.Reflection.Missing.Value,
+                             Excel.XlSearchOrder.xlByRows, Excel.XlSearchDirection.xlPrevious,
+                             true, System.Reflection.Missing.Value, System.Reflection.Missing.Value).Row;
+
+            for (int i = 0; i < last_row - 1; i++)
+            {
+                try
+                {
+
+
+                    DataRow Row = dt.NewRow();
+
+                    string sDate;
+
+                    double date;
+                    try
+                    {
+                        sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colDateTime]).Value2);
+
+                        date = double.Parse(sDate);
+
+                        Row[0] = DateTime.FromOADate(date).ToString("dd/MM/yyyy");
+                        Row[3] = date;
+                    }
+                    catch
+                    {
+                    }
+                    try
+                    {
+
+                        string flag = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTimeFlag]).Value2).ToLower();
+                        if (flag == "in")
+                        {
+                            sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTime]).Value2);
+
+                            date = double.Parse(sDate);
+
+                            Row[1] = DateTime.FromOADate(date).ToString("HH:mm");
+                        }
+                        else
+                        {
+                            sDate = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)ExcelWorksheet.Cells[i + firstDataRowNumber, colTime]).Value2);
+
+                            date = double.Parse(sDate);
+
+                            Row[2] = DateTime.FromOADate(date).ToString("HH:mm");
+                        }
+
+
+                    }
+                    catch
+                    {
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(Row[0].ToString()))
+                    {
+                        dt.Rows.Add(Row);
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    dt.Reset();
+
+                }
+
+            }
+            for (int i = 0; i < dayMonth; i++)
+            {
+                DateTime date_raw = new DateTime(fileDatetime.Year, fileDatetime.Month, i+1);
+                bool check = true;
+                string date_string = date_raw.ToString("dd/MM/yyyy");
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    if (dt.Rows[j][0].ToString() == date_string)
+                    {
+                        check = false;
+                    }
+                }
+                if (check)
+                {
+                    dt.Rows.Add(date_string, "", "", date_raw);
+                }
+            }
+            // Clean up
+            
+
+            try { ExcelWorksheet = null; } catch { }
+
+            try { ExcelWorkbook.Close(); } catch { }
+
+            try { ExcelWorkbook = null; } catch { }
+
+            try { ExcelApplication = null; } catch { }
+            return dt;
         }
     }// end form1
 }
