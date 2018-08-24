@@ -780,5 +780,20 @@ namespace TAIE
             try { ExcelApplication = null; } catch { }
             return dt;
         }
+
+        private void RdbSpecial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbSpecial.Checked)
+            {
+                lbTime.Text = "Time";
+                lbFlag.Text = "Flag";
+            }
+            else
+            {
+                lbTime.Text = "Time In";
+                lbFlag.Text = "Time In";
+            }
+        }
     }// end form1
 }
+

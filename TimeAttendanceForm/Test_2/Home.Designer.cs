@@ -69,8 +69,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbFlag = new System.Windows.Forms.Label();
             this.Dgv_Show_Preview = new System.Windows.Forms.DataGridView();
             this.btn_Export = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
@@ -538,25 +538,25 @@
             this.label13.TabIndex = 26;
             this.label13.Text = "Date";
             // 
-            // label14
+            // lbTime
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(26, 179);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 19);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Time In";
+            this.lbTime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.Location = new System.Drawing.Point(5, 179);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(75, 19);
+            this.lbTime.TabIndex = 27;
+            this.lbTime.Text = "Time In";
+            this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label15
+            // lbFlag
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(15, 214);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 19);
-            this.label15.TabIndex = 28;
-            this.label15.Text = "Time Out";
+            this.lbFlag.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFlag.Location = new System.Drawing.Point(9, 214);
+            this.lbFlag.Name = "lbFlag";
+            this.lbFlag.Size = new System.Drawing.Size(71, 19);
+            this.lbFlag.TabIndex = 28;
+            this.lbFlag.Text = "Time Out";
+            this.lbFlag.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Dgv_Show_Preview
             // 
@@ -624,9 +624,9 @@
             this.panel_Cell_Mapping.Controls.Add(this.tb_Emp_No);
             this.panel_Cell_Mapping.Controls.Add(this.Dgv_Show_Preview);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Time_Out);
-            this.panel_Cell_Mapping.Controls.Add(this.label15);
+            this.panel_Cell_Mapping.Controls.Add(this.lbFlag);
             this.panel_Cell_Mapping.Controls.Add(this.tb_Time_In);
-            this.panel_Cell_Mapping.Controls.Add(this.label14);
+            this.panel_Cell_Mapping.Controls.Add(this.lbTime);
             this.panel_Cell_Mapping.Controls.Add(this.label11);
             this.panel_Cell_Mapping.Controls.Add(this.label13);
             this.panel_Cell_Mapping.Controls.Add(this.label12);
@@ -656,15 +656,16 @@
             this.RdbSpecial.Name = "RdbSpecial";
             this.RdbSpecial.Size = new System.Drawing.Size(63, 19);
             this.RdbSpecial.TabIndex = 1;
-            this.RdbSpecial.TabStop = true;
             this.RdbSpecial.Text = "Special";
             this.RdbSpecial.UseVisualStyleBackColor = true;
+            this.RdbSpecial.CheckedChanged += new System.EventHandler(this.RdbSpecial_CheckedChanged);
             this.RdbSpecial.MouseLeave += new System.EventHandler(this.RdbSpecial_MouseLeave);
             this.RdbSpecial.MouseHover += new System.EventHandler(this.RdbSpecial_MouseHover);
             // 
             // RdbnNormal
             // 
             this.RdbnNormal.AutoSize = true;
+            this.RdbnNormal.Checked = true;
             this.RdbnNormal.Location = new System.Drawing.Point(5, 13);
             this.RdbnNormal.Name = "RdbnNormal";
             this.RdbnNormal.Size = new System.Drawing.Size(63, 19);
@@ -1061,8 +1062,8 @@
         private System.Windows.Forms.TextBox tb_Groupbox_Cell_Project;
         private System.Windows.Forms.TextBox tb_Groupbox_Cell_Site_Stop;
         private System.Windows.Forms.TextBox tb_Groupbox_Cell_Site_Start;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbFlag;
+        private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
