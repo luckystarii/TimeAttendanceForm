@@ -524,5 +524,25 @@ namespace TAIE
             All_Clear_Data();
             
         }
+
+        private void RdbSpecial_MouseHover(object sender, EventArgs e)
+        {
+            ImFromSpecail.Visible = true;
+        }
+
+        private void RdbSpecial_MouseLeave(object sender, EventArgs e)
+        {
+            ImFromSpecail.Visible = false;
+        }
+
+        private void RdbnNormal_MouseHover(object sender, EventArgs e)
+        {
+            ImFromNormal.Visible = true;
+        }
+
+        private void RdbnNormal_MouseLeave(object sender, EventArgs e)
+        {
+            ImFromNormal.Visible = false;
+        }
     }// end form1
 }

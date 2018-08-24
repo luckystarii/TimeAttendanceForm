@@ -32,9 +32,9 @@
             this.panel_Import_Export = new System.Windows.Forms.Panel();
             this.btn_Browse_Dest_file = new System.Windows.Forms.Button();
             this.btn_Browse_Target_file = new System.Windows.Forms.Button();
-            this.tb_Dest_file = new System.Windows.Forms.TextBox();
             this.tb_Target_file = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tb_Dest_file = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -76,6 +76,9 @@
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Preview = new System.Windows.Forms.Button();
             this.panel_Cell_Mapping = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RdbSpecial = new System.Windows.Forms.RadioButton();
+            this.RdbnNormal = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
             this.lb_Name = new System.Windows.Forms.Label();
             this.lb_Emp_No = new System.Windows.Forms.Label();
@@ -85,8 +88,10 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabImport = new System.Windows.Forms.TabPage();
+            this.ImFromNormal = new System.Windows.Forms.Panel();
+            this.ImFromSpecail = new System.Windows.Forms.Panel();
+            this.tabConfigExport = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.export_site_start = new System.Windows.Forms.TextBox();
@@ -113,9 +118,10 @@
             this.gb_Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Show_Preview)).BeginInit();
             this.panel_Cell_Mapping.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabImport.SuspendLayout();
+            this.tabConfigExport.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,17 +165,6 @@
             this.btn_Browse_Target_file.UseVisualStyleBackColor = true;
             this.btn_Browse_Target_file.Click += new System.EventHandler(this.btn_Browse_Target_file_Click);
             // 
-            // tb_Dest_file
-            // 
-            this.tb_Dest_file.BackColor = System.Drawing.SystemColors.Window;
-            this.tb_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Dest_file.Location = new System.Drawing.Point(94, 111);
-            this.tb_Dest_file.Name = "tb_Dest_file";
-            this.tb_Dest_file.ReadOnly = true;
-            this.tb_Dest_file.Size = new System.Drawing.Size(340, 26);
-            this.tb_Dest_file.TabIndex = 2;
-            this.tb_Dest_file.Click += new System.EventHandler(this.btn_Browse_Dest_file_Click);
-            // 
             // tb_Target_file
             // 
             this.tb_Target_file.BackColor = System.Drawing.SystemColors.Window;
@@ -190,6 +185,17 @@
             this.label5.Size = new System.Drawing.Size(85, 19);
             this.label5.TabIndex = 3;
             this.label5.Text = "Template file";
+            // 
+            // tb_Dest_file
+            // 
+            this.tb_Dest_file.BackColor = System.Drawing.SystemColors.Window;
+            this.tb_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_Dest_file.Location = new System.Drawing.Point(94, 111);
+            this.tb_Dest_file.Name = "tb_Dest_file";
+            this.tb_Dest_file.ReadOnly = true;
+            this.tb_Dest_file.Size = new System.Drawing.Size(340, 26);
+            this.tb_Dest_file.TabIndex = 2;
+            this.tb_Dest_file.Click += new System.EventHandler(this.btn_Browse_Dest_file_Click);
             // 
             // label4
             // 
@@ -456,7 +462,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(9, 8);
+            this.label9.Location = new System.Drawing.Point(9, 7);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(121, 22);
             this.label9.TabIndex = 20;
@@ -465,7 +471,7 @@
             // tb_Emp_No
             // 
             this.tb_Emp_No.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Emp_No.Location = new System.Drawing.Point(87, 38);
+            this.tb_Emp_No.Location = new System.Drawing.Point(87, 71);
             this.tb_Emp_No.Name = "tb_Emp_No";
             this.tb_Emp_No.Size = new System.Drawing.Size(48, 26);
             this.tb_Emp_No.TabIndex = 0;
@@ -473,7 +479,7 @@
             // tb_Date
             // 
             this.tb_Date.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Date.Location = new System.Drawing.Point(87, 108);
+            this.tb_Date.Location = new System.Drawing.Point(87, 141);
             this.tb_Date.Name = "tb_Date";
             this.tb_Date.Size = new System.Drawing.Size(48, 26);
             this.tb_Date.TabIndex = 2;
@@ -481,7 +487,7 @@
             // tb_Name
             // 
             this.tb_Name.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Name.Location = new System.Drawing.Point(87, 73);
+            this.tb_Name.Location = new System.Drawing.Point(87, 106);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(48, 26);
             this.tb_Name.TabIndex = 1;
@@ -489,7 +495,7 @@
             // tb_Time_In
             // 
             this.tb_Time_In.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Time_In.Location = new System.Drawing.Point(87, 143);
+            this.tb_Time_In.Location = new System.Drawing.Point(87, 176);
             this.tb_Time_In.Name = "tb_Time_In";
             this.tb_Time_In.Size = new System.Drawing.Size(48, 26);
             this.tb_Time_In.TabIndex = 3;
@@ -497,7 +503,7 @@
             // tb_Time_Out
             // 
             this.tb_Time_Out.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_Time_Out.Location = new System.Drawing.Point(87, 178);
+            this.tb_Time_Out.Location = new System.Drawing.Point(87, 211);
             this.tb_Time_Out.Name = "tb_Time_Out";
             this.tb_Time_Out.Size = new System.Drawing.Size(48, 26);
             this.tb_Time_Out.TabIndex = 4;
@@ -506,7 +512,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(16, 41);
+            this.label11.Location = new System.Drawing.Point(16, 74);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 19);
             this.label11.TabIndex = 24;
@@ -516,7 +522,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(35, 76);
+            this.label12.Location = new System.Drawing.Point(35, 109);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(46, 19);
             this.label12.TabIndex = 25;
@@ -526,7 +532,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(43, 111);
+            this.label13.Location = new System.Drawing.Point(43, 144);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(38, 19);
             this.label13.TabIndex = 26;
@@ -536,7 +542,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(26, 146);
+            this.label14.Location = new System.Drawing.Point(26, 179);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(54, 19);
             this.label14.TabIndex = 27;
@@ -546,7 +552,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(15, 181);
+            this.label15.Location = new System.Drawing.Point(15, 214);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 19);
             this.label15.TabIndex = 28;
@@ -603,6 +609,7 @@
             // 
             // panel_Cell_Mapping
             // 
+            this.panel_Cell_Mapping.Controls.Add(this.groupBox1);
             this.panel_Cell_Mapping.Controls.Add(this.label16);
             this.panel_Cell_Mapping.Controls.Add(this.lb_Name);
             this.panel_Cell_Mapping.Controls.Add(this.lb_Emp_No);
@@ -629,6 +636,44 @@
             this.panel_Cell_Mapping.Name = "panel_Cell_Mapping";
             this.panel_Cell_Mapping.Size = new System.Drawing.Size(478, 248);
             this.panel_Cell_Mapping.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RdbSpecial);
+            this.groupBox1.Controls.Add(this.RdbnNormal);
+            this.groupBox1.Location = new System.Drawing.Point(7, 32);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(135, 33);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "From Format";
+            // 
+            // RdbSpecial
+            // 
+            this.RdbSpecial.AutoSize = true;
+            this.RdbSpecial.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbSpecial.Location = new System.Drawing.Point(74, 14);
+            this.RdbSpecial.Name = "RdbSpecial";
+            this.RdbSpecial.Size = new System.Drawing.Size(63, 19);
+            this.RdbSpecial.TabIndex = 1;
+            this.RdbSpecial.TabStop = true;
+            this.RdbSpecial.Text = "Special";
+            this.RdbSpecial.UseVisualStyleBackColor = true;
+            this.RdbSpecial.MouseLeave += new System.EventHandler(this.RdbSpecial_MouseLeave);
+            this.RdbSpecial.MouseHover += new System.EventHandler(this.RdbSpecial_MouseHover);
+            // 
+            // RdbnNormal
+            // 
+            this.RdbnNormal.AutoSize = true;
+            this.RdbnNormal.Location = new System.Drawing.Point(5, 13);
+            this.RdbnNormal.Name = "RdbnNormal";
+            this.RdbnNormal.Size = new System.Drawing.Size(63, 19);
+            this.RdbnNormal.TabIndex = 0;
+            this.RdbnNormal.TabStop = true;
+            this.RdbnNormal.Text = "Normal";
+            this.RdbnNormal.UseVisualStyleBackColor = true;
+            this.RdbnNormal.MouseLeave += new System.EventHandler(this.RdbnNormal_MouseLeave);
+            this.RdbnNormal.MouseHover += new System.EventHandler(this.RdbnNormal_MouseHover);
             // 
             // label16
             // 
@@ -690,8 +735,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabImport);
+            this.tabControl1.Controls.Add(this.tabConfigExport);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -700,29 +745,51 @@
             this.tabControl1.Size = new System.Drawing.Size(492, 601);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabImport
             // 
-            this.tabPage1.Controls.Add(this.panel_Cell_Mapping);
-            this.tabPage1.Controls.Add(this.panel_Project_Detail);
-            this.tabPage1.Controls.Add(this.panel_Import_Export);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(484, 573);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Import/Export";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabImport.Controls.Add(this.ImFromNormal);
+            this.tabImport.Controls.Add(this.ImFromSpecail);
+            this.tabImport.Controls.Add(this.panel_Cell_Mapping);
+            this.tabImport.Controls.Add(this.panel_Project_Detail);
+            this.tabImport.Controls.Add(this.panel_Import_Export);
+            this.tabImport.Location = new System.Drawing.Point(4, 24);
+            this.tabImport.Name = "tabImport";
+            this.tabImport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabImport.Size = new System.Drawing.Size(484, 573);
+            this.tabImport.TabIndex = 0;
+            this.tabImport.Text = "Import";
+            this.tabImport.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // ImFromNormal
             // 
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(484, 573);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Config";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.ImFromNormal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImFromNormal.BackgroundImage")));
+            this.ImFromNormal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ImFromNormal.Location = new System.Drawing.Point(51, 274);
+            this.ImFromNormal.Name = "ImFromNormal";
+            this.ImFromNormal.Size = new System.Drawing.Size(159, 100);
+            this.ImFromNormal.TabIndex = 41;
+            this.ImFromNormal.Visible = false;
+            // 
+            // ImFromSpecail
+            // 
+            this.ImFromSpecail.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImFromSpecail.BackgroundImage")));
+            this.ImFromSpecail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ImFromSpecail.Location = new System.Drawing.Point(121, 274);
+            this.ImFromSpecail.Name = "ImFromSpecail";
+            this.ImFromSpecail.Size = new System.Drawing.Size(146, 100);
+            this.ImFromSpecail.TabIndex = 40;
+            this.ImFromSpecail.Visible = false;
+            // 
+            // tabConfigExport
+            // 
+            this.tabConfigExport.Controls.Add(this.panel1);
+            this.tabConfigExport.Location = new System.Drawing.Point(4, 24);
+            this.tabConfigExport.Name = "tabConfigExport";
+            this.tabConfigExport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConfigExport.Size = new System.Drawing.Size(484, 573);
+            this.tabConfigExport.TabIndex = 1;
+            this.tabConfigExport.Text = "Export";
+            this.tabConfigExport.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -957,9 +1024,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Show_Preview)).EndInit();
             this.panel_Cell_Mapping.ResumeLayout(false);
             this.panel_Cell_Mapping.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabImport.ResumeLayout(false);
+            this.tabConfigExport.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -1023,8 +1092,8 @@
         private System.Windows.Forms.Panel Panel_Groupbox_Data_Site_Start;
         private System.Windows.Forms.Panel Panel_Groupbox_Data_Site_Stop;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabImport;
+        private System.Windows.Forms.TabPage tabConfigExport;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label23;
@@ -1046,6 +1115,11 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton RdbSpecial;
+        private System.Windows.Forms.RadioButton RdbnNormal;
+        private System.Windows.Forms.Panel ImFromNormal;
+        private System.Windows.Forms.Panel ImFromSpecail;
     }
 }
 
