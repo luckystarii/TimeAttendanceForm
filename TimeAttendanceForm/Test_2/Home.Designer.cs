@@ -145,6 +145,7 @@
             // 
             // btn_Browse_Dest_file
             // 
+            this.btn_Browse_Dest_file.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Browse_Dest_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Browse_Dest_file.Location = new System.Drawing.Point(440, 109);
             this.btn_Browse_Dest_file.Name = "btn_Browse_Dest_file";
@@ -156,6 +157,7 @@
             // 
             // btn_Browse_Target_file
             // 
+            this.btn_Browse_Target_file.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Browse_Target_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Browse_Target_file.Location = new System.Drawing.Point(440, 36);
             this.btn_Browse_Target_file.Name = "btn_Browse_Target_file";
@@ -240,6 +242,7 @@
             // 
             // btn_Browse_Template_file
             // 
+            this.btn_Browse_Template_file.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Browse_Template_file.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Browse_Template_file.Location = new System.Drawing.Point(440, 76);
             this.btn_Browse_Template_file.Name = "btn_Browse_Template_file";
@@ -564,7 +567,6 @@
             this.Dgv_Show_Preview.AllowUserToDeleteRows = false;
             this.Dgv_Show_Preview.AllowUserToResizeColumns = false;
             this.Dgv_Show_Preview.AllowUserToResizeRows = false;
-            this.Dgv_Show_Preview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Dgv_Show_Preview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Show_Preview.Location = new System.Drawing.Point(149, 38);
             this.Dgv_Show_Preview.Name = "Dgv_Show_Preview";
@@ -576,6 +578,7 @@
             // 
             // btn_Export
             // 
+            this.btn_Export.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Export.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Export.Location = new System.Drawing.Point(315, 209);
             this.btn_Export.Name = "btn_Export";
@@ -587,6 +590,7 @@
             // 
             // btn_Cancel
             // 
+            this.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Cancel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Cancel.Location = new System.Drawing.Point(396, 209);
             this.btn_Cancel.Name = "btn_Cancel";
@@ -598,6 +602,7 @@
             // 
             // btn_Preview
             // 
+            this.btn_Preview.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Preview.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Preview.Location = new System.Drawing.Point(234, 209);
             this.btn_Preview.Name = "btn_Preview";
@@ -651,6 +656,7 @@
             // RdbSpecial
             // 
             this.RdbSpecial.AutoSize = true;
+            this.RdbSpecial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RdbSpecial.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RdbSpecial.Location = new System.Drawing.Point(74, 14);
             this.RdbSpecial.Name = "RdbSpecial";
@@ -666,6 +672,7 @@
             // 
             this.RdbnNormal.AutoSize = true;
             this.RdbnNormal.Checked = true;
+            this.RdbnNormal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RdbnNormal.Location = new System.Drawing.Point(5, 13);
             this.RdbnNormal.Name = "RdbnNormal";
             this.RdbnNormal.Size = new System.Drawing.Size(63, 19);
@@ -1013,6 +1020,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "C.S.I. Group - Time Attendance";
             this.panel_Import_Export.ResumeLayout(false);
             this.panel_Import_Export.PerformLayout();
