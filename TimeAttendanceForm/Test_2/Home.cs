@@ -108,7 +108,7 @@ namespace TAIE
                 {
                     tb_Target_file.Text = @"...\" + Path.GetFileName(Pathfile);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Console.WriteLine(ex.StackTrace);
                 }
@@ -463,8 +463,8 @@ namespace TAIE
                         workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_time_out.Text))] = Dgv_Show_Preview.Rows[i].Cells[2].Value.ToString();
                         workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_project_name.Text))] = ProjectName;
                         workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_date.Text))] = Dgv_Show_Preview.Rows[i].Cells[3].Value.ToString();
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_start.Text))] = SiteStartTime;
-                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_stop.Text))] = SiteStopTime;
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_start.Text))] = SiteStartTime.Replace(".",":");
+                        workSheet.Cells[getIntFromAddr(export_time_out.Text) + i, GetColumnNumber(getStringFromAddr(export_site_stop.Text))] = SiteStopTime.Replace(".", ":");
                     }
                 }
                 else
@@ -476,7 +476,7 @@ namespace TAIE
                 excelApp.Quit();
                 MessageBox.Show("Export Complete. \n File : " + tb_Dest_file.Text + "\\" + tb_Groupbox_Data_Project.Text + "_" + lb_Name.Text + "_" + fileDatetime.ToString("MMMyyyy") + ".xls");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Export Error! Please check Project Detail.");
             }
@@ -500,7 +500,7 @@ namespace TAIE
             openFileDialog2.FilterIndex = 3;
 
             openFileDialog2.Multiselect = false;        //not allow multiline selection at the file selection level
-            openFileDialog2.Title = "Select file to import";   //define the name of openfileDialog
+            openFileDialog2.Title = "Select file for template.";   //define the name of openfileDialog
             openFileDialog2.InitialDirectory = @"Desktop"; //define the initial directory
             DialogResult result = openFileDialog2.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
